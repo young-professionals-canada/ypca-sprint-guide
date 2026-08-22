@@ -992,7 +992,9 @@
           return;
         }
         try {
-          const response = await fetch(location.href.split("#")[0]);
+          const sourceUrl = new URL(location.pathname, location.origin);
+          sourceUrl.searchParams.set("download", Date.now().toString());
+          const response = await fetch(sourceUrl, { cache: "no-store" });
           const html = await response.text();
           const blob = new Blob([html], { type: "text/html" });
           const url = URL.createObjectURL(blob);
