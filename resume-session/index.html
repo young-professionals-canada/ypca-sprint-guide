@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hands-on guide for the YPCA Career Academy Sprint resume building, tailoring, and project building session.">
+  <meta name="theme-color" content="#223377">
+  <title>Sprint Resume Session Guide | YPCA Career Academy</title>
+  <style>
+    :root {
+      --navy: #223377;
+      --navy-deep: #17265f;
+      --coral: #ee626f;
+      --coral-dark: #d94f5e;
+      --blush: #fcecef;
+      --purple: #594477;
+      --soft-purple: #f0ecf8;
+      --teal: #1f817c;
+      --soft-teal: #e7f4f3;
+      --ink: #25325a;
+      --muted: #687294;
+      --line: #dfe2ec;
+      --paper: #ffffff;
+      --wash: #f5f4f2;
+      --shadow: 0 16px 48px rgba(25, 40, 94, .1);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--wash);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+    button, input, textarea { font: inherit; }
+    a { color: inherit; }
+    :focus-visible { outline: 3px solid #ff9aa4; outline-offset: 3px; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border-top: 5px solid var(--coral);
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+    }
+    .topbar-inner {
+      width: min(1180px, calc(100% - 32px));
+      min-height: 68px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 0; color: var(--navy); font-weight: 900; text-decoration: none; }
+    .brand-logo { width: 142px; height: auto; display: block; }
+    .brand-academy { margin-left: 14px; padding-left: 14px; border-left: 1px solid var(--line); font-size: .82rem; letter-spacing: .01em; }
+    .top-actions { display: flex; align-items: center; gap: 8px; }
+    .progress-track { height: 4px; background: #ebeaf0; }
+    .progress-bar { width: 0; height: 100%; background: var(--coral); transition: width .2s ease; }
+
+    .button {
+      min-height: 42px;
+      padding: 10px 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 0;
+      border-radius: 9px;
+      background: var(--coral);
+      color: #fff;
+      cursor: pointer;
+      font-weight: 850;
+      text-decoration: none;
+      transition: transform .16s ease, background .16s ease;
+    }
+    .button:hover { transform: translateY(-2px); background: var(--coral-dark); }
+    .button.navy { background: var(--navy); }
+    .button.navy:hover { background: var(--navy-deep); }
+    .button.ghost { border: 1px solid var(--line); background: #fff; color: var(--navy); }
+    .button.ghost:hover { background: #f7f7fa; }
+    .button.small { min-height: 37px; padding: 8px 12px; font-size: .83rem; }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 560px;
+      display: grid;
+      align-items: center;
+      border-bottom: 10px solid var(--coral);
+      background: var(--navy);
+      color: #fff;
+    }
+    .hero::before { content: ""; position: absolute; width: 390px; height: 390px; right: -95px; top: -155px; border-radius: 50%; background: var(--purple); }
+    .hero::after { content: ""; position: absolute; width: 145px; height: 145px; left: -55px; bottom: -60px; border-radius: 50%; background: var(--purple); }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: min(1180px, calc(100% - 40px));
+      margin: auto;
+      padding: 70px 0 78px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, .7fr);
+      align-items: center;
+      gap: 70px;
+    }
+    .eyebrow { margin: 0 0 24px; color: #ff929c; font-size: .77rem; font-weight: 900; letter-spacing: .2em; text-transform: uppercase; }
+    h1 { margin: 0; max-width: 820px; font-size: clamp(3rem, 6.3vw, 6rem); line-height: .98; letter-spacing: -.06em; }
+    .hero-copy { max-width: 720px; margin: 28px 0 0; color: #eef0ff; font-size: clamp(1.08rem, 2vw, 1.35rem); }
+    .hero-meta {
+      padding: 28px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 15px;
+      background: rgba(255,255,255,.08);
+      box-shadow: 0 18px 50px rgba(0,0,0,.15);
+    }
+    .hero-meta span { display: block; color: #ff9ba4; font-size: .72rem; font-weight: 900; letter-spacing: .14em; text-transform: uppercase; }
+    .hero-meta strong { display: block; margin-top: 10px; font-size: 1.45rem; line-height: 1.2; }
+    .hero-meta p { margin: 14px 0 0; color: #dce0f7; }
+
+    .layout {
+      width: min(1180px, calc(100% - 32px));
+      margin: 46px auto 100px;
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: 30px;
+      align-items: start;
+    }
+    .step-nav {
+      position: sticky;
+      top: 92px;
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--coral);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .step-nav p { margin: 2px 9px 12px; color: var(--navy); font-size: .7rem; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; }
+    .step-nav a { display: flex; align-items: center; gap: 10px; padding: 10px 9px; border-radius: 8px; color: var(--muted); font-size: .9rem; font-weight: 760; text-decoration: none; }
+    .step-nav a:hover { background: var(--blush); color: var(--navy); }
+    .nav-number { width: 26px; height: 26px; flex: 0 0 26px; display: grid; place-items: center; border-radius: 7px; background: var(--soft-purple); color: var(--purple); font-size: .7rem; font-weight: 900; }
+    .content { min-width: 0; display: grid; gap: 28px; }
+    .panel {
+      scroll-margin-top: 94px;
+      padding: clamp(25px, 4.5vw, 48px);
+      border: 1px solid var(--line);
+      border-top: 5px solid var(--coral);
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: var(--shadow);
+    }
+    .step-heading { display: grid; grid-template-columns: 46px 1fr; gap: 16px; align-items: start; }
+    .step-number { width: 46px; height: 40px; display: grid; place-items: center; border-radius: 9px; background: var(--coral); color: #fff; font-size: .8rem; font-weight: 900; }
+    .panel h2 { margin: 0; color: var(--navy); font-size: clamp(1.9rem, 3.8vw, 2.8rem); line-height: 1.05; letter-spacing: -.045em; }
+    .step-intro { max-width: 750px; margin: 10px 0 0; color: var(--muted); }
+
+    .check-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+    .check-item { min-height: 64px; padding: 14px; display: flex; align-items: flex-start; gap: 11px; border: 1px solid var(--line); border-radius: 10px; background: #fff; cursor: pointer; }
+    .check-item:nth-child(odd) { background: var(--blush); }
+    .check-item input { width: 19px; height: 19px; margin: 2px 0 0; accent-color: var(--coral); }
+    .check-item span { color: var(--navy); font-weight: 760; }
+
+    .resource-row { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px; }
+    details { margin-top: 22px; border: 1px solid var(--line); border-radius: 11px; background: #fbfbfd; }
+    summary { padding: 17px 19px; color: var(--navy); cursor: pointer; font-weight: 850; }
+    .details-body { padding: 0 19px 20px; }
+    .details-body p { color: var(--muted); }
+    .prompt-toolbar { margin-top: 18px; padding: 11px 12px; display: flex; align-items: center; justify-content: space-between; gap: 16px; border-radius: 9px 9px 0 0; background: var(--navy); color: #fff; }
+    .prompt-box { width: 100%; min-height: 340px; padding: 16px; resize: vertical; border: 1px solid #cfd3e0; border-top: 0; border-radius: 0 0 9px 9px; background: #f8f8fa; color: #303a58; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .76rem; line-height: 1.52; }
+    .tip { margin-top: 18px; padding: 16px 18px; border-left: 4px solid var(--coral); border-radius: 8px; background: var(--blush); color: var(--purple); }
+    .tip strong { color: var(--navy); }
+
+    .template-grid { margin-top: 24px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .template-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+    .template-card img { width: 100%; aspect-ratio: 8.5 / 11; display: block; object-fit: cover; object-position: top; border-bottom: 1px solid var(--line); background: #f1f1f3; }
+    .template-card div { padding: 13px; }
+    .template-card strong { display: block; color: var(--navy); font-size: .87rem; }
+    .template-card p { min-height: 38px; margin: 5px 0 11px; color: var(--muted); font-size: .74rem; }
+
+    .project-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 15px; }
+    .field { display: grid; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { color: var(--navy); font-size: .8rem; font-weight: 850; }
+    .field input, .field textarea { width: 100%; padding: 12px 13px; border: 1px solid #cfd3e0; border-radius: 9px; background: #fff; color: var(--ink); }
+    .field textarea { min-height: 110px; resize: vertical; }
+    .project-output { margin-top: 22px; padding: 20px; border-radius: 11px; background: var(--soft-teal); color: #245956; }
+    .project-output h3 { margin: 0 0 9px; color: var(--teal); }
+    .project-output p { margin: 7px 0; white-space: pre-wrap; }
+
+    .finish { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .finish h2 { color: #fff; }
+    .finish .step-intro { color: #dce0f7; }
+    .finish-actions { margin-top: 25px; display: flex; flex-wrap: wrap; gap: 9px; }
+
+    .toast { position: fixed; z-index: 40; right: 22px; bottom: 22px; max-width: min(360px, calc(100% - 44px)); padding: 13px 17px; border-radius: 9px; background: #17204a; color: #fff; box-shadow: 0 14px 42px rgba(0,0,0,.25); opacity: 0; transform: translateY(12px); pointer-events: none; transition: .2s ease; }
+    .toast.show { opacity: 1; transform: translateY(0); }
+    footer { padding: 30px 20px; background: #fff; color: var(--muted); text-align: center; font-size: .86rem; }
+
+    @media (max-width: 920px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+      .hero-meta { max-width: 560px; }
+      .layout { grid-template-columns: 1fr; }
+      .step-nav { position: static; display: flex; flex-wrap: wrap; }
+      .step-nav p { width: 100%; }
+      .template-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 650px) {
+      .topbar-inner { min-height: 62px; gap: 8px; }
+      .brand-logo { width: 92px; }
+      .brand-academy { margin-left: 8px; padding-left: 8px; font-size: .67rem; }
+      .top-actions .print-button, .top-actions .start-button { display: none; }
+      .hero { min-height: auto; }
+      .hero-inner { padding: 58px 0 66px; }
+      .check-grid, .project-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .template-grid { grid-template-columns: 1fr 1fr; }
+      .panel { padding: 24px 19px; }
+      .step-heading { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 360px) {
+      .topbar-inner { width: calc(100% - 20px); }
+      .brand-logo { width: 80px; }
+      .brand-academy { margin-left: 6px; padding-left: 6px; font-size: .6rem; }
+      .top-actions .button { padding-inline: 9px; font-size: .74rem; }
+      h1 { font-size: 2.65rem; }
+      .hero-meta { padding: 22px; }
+      .template-grid { grid-template-columns: 1fr; }
+    }
+    @media print {
+      .topbar, .step-nav, .button, .toast { display: none !important; }
+      body { background: #fff; }
+      .hero { min-height: auto; color: #000; background: #fff; border-bottom: 4px solid #000; }
+      .hero::before, .hero::after { display: none; }
+      .hero-inner { display: block; padding: 30px 0; }
+      .hero-copy, .hero-meta p { color: #333; }
+      .hero-meta { padding: 18px 0; border: 0; box-shadow: none; }
+      .layout { display: block; width: 100%; margin: 20px 0; }
+      .panel { break-inside: avoid; margin-bottom: 18px; box-shadow: none; }
+      details { break-inside: avoid; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .button, .progress-bar, .toast { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="YPCA Career Academy Sprint Resume Session home">
+        <img class="brand-logo" src="../assets/ypca-wordmark.png" alt="Young Professionals Canada">
+        <span class="brand-academy">Career Academy</span>
+      </a>
+      <div class="top-actions">
+        <a class="button ghost small" href="../">All sessions</a>
+        <button class="button ghost small print-button" type="button" onclick="window.print()">Print / PDF</button>
+        <a class="button small start-button" href="#prepare">Start</a>
+      </div>
+    </div>
+    <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Sprint · Session 1</p>
+          <h1>Build a resume that is ready to work.</h1>
+          <p class="hero-copy">Create one verified source of truth, build a polished base resume, tailor it honestly for a real role, and start a project worth showing.</p>
+        </div>
+        <aside class="hero-meta" aria-label="Session details">
+          <span>In person</span>
+          <strong>Saturday, August 22<br>1:00-4:00 PM</strong>
+          <p>Bring your laptop, experience notes, and a job posting you would genuinely apply to.</p>
+        </aside>
+      </div>
+    </section>
+
+    <div class="layout">
+      <nav class="step-nav" aria-label="Resume session steps">
+        <p>Session steps</p>
+        <a href="#prepare"><span class="nav-number">01</span>Prepare</a>
+        <a href="#master-profile"><span class="nav-number">02</span>Profile</a>
+        <a href="#base-resume"><span class="nav-number">03</span>Build</a>
+        <a href="#tailor"><span class="nav-number">04</span>Tailor</a>
+        <a href="#project"><span class="nav-number">05</span>Project</a>
+        <a href="#finish"><span class="nav-number">06</span>Finish</a>
+      </nav>
+
+      <div class="content">
+        <section class="panel" id="prepare">
+          <div class="step-heading">
+            <div class="step-number">01</div>
+            <div>
+              <h2>Prepare your evidence</h2>
+              <p class="step-intro">Start with facts, not polished sentences. Gather the details the AI needs so it never has to guess.</p>
+            </div>
+          </div>
+          <div class="check-grid">
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="notes"><span>Work, volunteer, project, and leadership notes are open</span></label>
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="education"><span>Education, skills, awards, and certifications are listed</span></label>
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="numbers"><span>Dates, tools, numbers, and outcomes are verified</span></label>
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="posting"><span>A real job posting is ready for the tailoring step</span></label>
+          </div>
+          <div class="tip"><strong>Truth rule:</strong> if a number, tool, date, responsibility, or outcome cannot be verified, leave it out or mark it for follow-up.</div>
+        </section>
+
+        <section class="panel" id="master-profile">
+          <div class="step-heading">
+            <div class="step-number">02</div>
+            <div>
+              <h2>Create your Master Profile</h2>
+              <p class="step-intro">Capture everything once in a structured source-of-truth file. Future resumes should draw facts from this profile, not from memory.</p>
+            </div>
+          </div>
+          <div class="resource-row">
+            <a class="button navy small" href="../resources/resume-toolkit/master-profile-worksheet.docx" download>Worksheet (.docx)</a>
+            <a class="button ghost small" href="../resources/resume-toolkit/master-profile-example.md" download>Example (.md)</a>
+            <a class="button ghost small" href="../resources/resume-toolkit/master-profile-instructions.pdf" target="_blank">Full instructions (.pdf)</a>
+            <a class="button ghost small" href="../resources/resume-toolkit/master-profile-prompt.pdf" target="_blank">Prompt sheet (.pdf)</a>
+          </div>
+          <details>
+            <summary>Open the Master Profile prompt</summary>
+            <div class="details-body">
+              <p>Attach your completed worksheet and the example Markdown file to an AI assistant that accepts attachments. Then use this prompt.</p>
+              <div class="prompt-toolbar"><strong>Master Profile prompt</strong><button class="button small copy-button" type="button" data-target="masterPrompt">Copy prompt</button></div>
+              <textarea class="prompt-box" id="masterPrompt" readonly>I've attached two files: my filled-out Master Profile Worksheet and Master_Profile_Example.md, which shows the exact format to follow.
+
+Read everything in my worksheet and build my Master Profile using the example's structure, section order, formatting, and frontmatter.
+
+For every job, project, or activity, extract: Context, Dates, What was actually done, Tools, Verified keywords, and Do not claim.
+
+Only use facts, numbers, tools, dates, and keywords I explicitly provided. Do not guess. If information is vague or incomplete, add it to a Needs Follow-Up section at the end. If a phone number or precise dates were not provided, write "Not yet provided" exactly.
+
+Skip any optional section for which I supplied no information. Return the complete file as one Markdown code block. Do not summarize or shorten the real detail.</textarea>
+            </div>
+          </details>
+          <label class="check-item" style="margin-top:20px"><input class="progress-check" type="checkbox" data-key="profile"><span>My Master Profile is complete and saved as a Markdown file</span></label>
+        </section>
+
+        <section class="panel" id="base-resume">
+          <div class="step-heading">
+            <div class="step-number">03</div>
+            <div>
+              <h2>Build your base resume</h2>
+              <p class="step-intro">Choose one editable Word template. The Master Profile supplies the facts; the template supplies the order and format.</p>
+            </div>
+          </div>
+          <div class="template-grid">
+            <article class="template-card">
+              <img src="../resources/resume-toolkit/previews/resume-template-1.jpg" alt="Preview of resume template 1">
+              <div><strong>Template 1</strong><p>Balanced education and experience layout.</p><a class="button ghost small" href="../resources/resume-toolkit/resume-template-1.docx" download>Download</a></div>
+            </article>
+            <article class="template-card">
+              <img src="../resources/resume-toolkit/previews/resume-template-2.jpg" alt="Preview of resume template 2">
+              <div><strong>Template 2</strong><p>Compact layout for focused experience.</p><a class="button ghost small" href="../resources/resume-toolkit/resume-template-2.docx" download>Download</a></div>
+            </article>
+            <article class="template-card">
+              <img src="../resources/resume-toolkit/previews/resume-template-3.jpg" alt="Preview of resume template 3">
+              <div><strong>Template 3</strong><p>Skills-forward professional layout.</p><a class="button ghost small" href="../resources/resume-toolkit/resume-template-3.docx" download>Download</a></div>
+            </article>
+            <article class="template-card">
+              <img src="../resources/resume-toolkit/previews/resume-template-4.jpg" alt="Preview of resume template 4">
+              <div><strong>Template 4</strong><p>Detailed education and experience layout.</p><a class="button ghost small" href="../resources/resume-toolkit/resume-template-4.docx" download>Download</a></div>
+            </article>
+          </div>
+          <div class="resource-row">
+            <a class="button ghost small" href="../resources/resume-toolkit/resume-build-instructions.pdf" target="_blank">Full instructions (.pdf)</a>
+            <a class="button ghost small" href="../resources/resume-toolkit/resume-build-prompt.pdf" target="_blank">Prompt sheet (.pdf)</a>
+          </div>
+          <details>
+            <summary>Open the base resume prompt</summary>
+            <div class="details-body">
+              <p>Attach your Master Profile and the Word template you selected.</p>
+              <div class="prompt-toolbar"><strong>Base resume prompt</strong><button class="button small copy-button" type="button" data-target="basePrompt">Copy prompt</button></div>
+              <textarea class="prompt-box" id="basePrompt" readonly>I've attached my Master Profile and a Word resume template.
+
+Read the entire Master Profile before writing. Build a complete, general-purpose resume using only facts, numbers, tools, and keywords in that profile. Do not include anything listed under Guardrails or "Do not claim."
+
+Follow the attached template's section order, section names, and overall format. Replace every placeholder with verified content. Rewrite raw notes into concise bullets with strong action verbs. Prioritize the strongest, most specific achievements.
+
+If Phone or Dates are "Not yet provided," use [ADD PHONE] or [ADD DATES]. Do not guess or silently omit them.
+
+Return the complete resume section by section, ready to copy into the Word template.</textarea>
+            </div>
+          </details>
+          <label class="check-item" style="margin-top:20px"><input class="progress-check" type="checkbox" data-key="base"><span>My base resume is complete, proofread, and saved as a Word file</span></label>
+        </section>
+
+        <section class="panel" id="tailor">
+          <div class="step-heading">
+            <div class="step-number">04</div>
+            <div>
+              <h2>Tailor for a real role</h2>
+              <p class="step-intro">Match the employer's language where it is truthful. Never add a keyword that claims experience you do not have.</p>
+            </div>
+          </div>
+          <div class="resource-row">
+            <a class="button navy small" href="../resources/resume-toolkit/resume-tailor-skill.md" download>Tailoring skill (.md)</a>
+            <a class="button ghost small" href="../resources/resume-toolkit/resume-tailor-instructions.pdf" target="_blank">Full instructions (.pdf)</a>
+          </div>
+          <details open>
+            <summary>Open the tailoring prompt</summary>
+            <div class="details-body">
+              <p>Attach your Master Profile and base resume, then paste the complete job posting below this prompt.</p>
+              <div class="prompt-toolbar"><strong>Resume tailoring prompt</strong><button class="button small copy-button" type="button" data-target="tailorPrompt">Copy prompt</button></div>
+              <textarea class="prompt-box" id="tailorPrompt" readonly>My attached Master Profile is the only source of truth for facts, numbers, tools, and keywords. My attached base resume is the structure and formatting to match.
+
+1. Read the entire Master Profile, including Guardrails and every "Do not claim" note.
+2. Extract and rank the job posting's top 10-15 skills, tools, and competencies. Weight the title, opening paragraph, and required qualifications most heavily.
+3. Rewrite only where useful. Never invent or change a number, tool, responsibility, outcome, or skill. Front-load accurate keywords and use the posting's language only when truthful.
+4. Reorder verified skills by relevance. Preserve [ADD PHONE] and [ADD DATES] wherever information is missing.
+5. Score how many top-ranked keywords now appear out of 100 and identify important keywords that cannot honestly be included.
+6. Produce the complete tailored resume, then summarize the bullets changed, sections reordered, ATS match score, and honest keyword gaps.</textarea>
+            </div>
+          </details>
+          <div class="check-grid">
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="keywords"><span>I reviewed the ranked keywords and removed anything inaccurate</span></label>
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="tailored"><span>My tailored resume still matches the base resume's format</span></label>
+          </div>
+        </section>
+
+        <section class="panel" id="project">
+          <div class="step-heading">
+            <div class="step-number">05</div>
+            <div>
+              <h2>Start a standout project</h2>
+              <p class="step-intro">Scope something small enough to finish in about two weeks and concrete enough to show a recruiter.</p>
+            </div>
+          </div>
+          <div class="project-grid">
+            <div class="field"><label for="projectTitle">Working project title</label><input id="projectTitle" data-save placeholder="Example: Toronto Transit Delay Dashboard"></div>
+            <div class="field"><label for="projectAudience">Who is it for?</label><input id="projectAudience" data-save placeholder="Example: commuters and transit planners"></div>
+            <div class="field full"><label for="projectProblem">Problem or question</label><textarea id="projectProblem" data-save placeholder="What specific problem will the project help explain or solve?"></textarea></div>
+            <div class="field"><label for="projectProof">Finished proof</label><input id="projectProof" data-save placeholder="Dashboard, case study, analysis, prototype..."></div>
+            <div class="field"><label for="projectNext">Next 30-minute action</label><input id="projectNext" data-save placeholder="Find a dataset, sketch the first screen..."></div>
+          </div>
+          <div class="project-output" aria-live="polite">
+            <h3>Your two-week project brief</h3>
+            <p id="projectBrief">Fill in the fields above. Your brief saves automatically in this browser.</p>
+          </div>
+          <div class="check-grid">
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="scope"><span>The result can be completed and shared within two weeks</span></label>
+            <label class="check-item"><input class="progress-check" type="checkbox" data-key="started"><span>I completed the first 30-minute action</span></label>
+          </div>
+        </section>
+
+        <section class="panel finish" id="finish">
+          <div class="step-heading">
+            <div class="step-number">06</div>
+            <div>
+              <h2>Leave with usable work</h2>
+              <p class="step-intro">Before you close your laptop, confirm that the base resume, tailored resume, Master Profile, and project brief are saved somewhere you can find again.</p>
+            </div>
+          </div>
+          <div class="finish-actions">
+            <a class="button" href="../personal-website/">Continue to website session &rarr;</a>
+            <button class="button ghost" type="button" onclick="window.print()">Save guide as PDF</button>
+            <button class="button ghost" id="resetGuide" type="button">Reset progress</button>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer>YPCA · Career Academy · Sprint · Resume Building + Tailoring + Project Building</footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    (() => {
+      const storageKey = "ypca-resume-session-v1";
+      const fields = [...document.querySelectorAll("[data-save]")];
+      const checks = [...document.querySelectorAll(".progress-check")];
+      const progressBar = document.getElementById("progressBar");
+      const toast = document.getElementById("toast");
+      const emptyState = { checks: {}, fields: {} };
+      let state = emptyState;
+
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey));
+        if (saved) state = { checks: saved.checks || {}, fields: saved.fields || {} };
+      } catch (_) {}
+
+      function save() {
+        localStorage.setItem(storageKey, JSON.stringify(state));
+      }
+
+      function notify(message) {
+        toast.textContent = message;
+        toast.classList.add("show");
+        clearTimeout(notify.timer);
+        notify.timer = setTimeout(() => toast.classList.remove("show"), 1900);
+      }
+
+      function refreshProgress() {
+        const complete = checks.filter(check => check.checked).length;
+        progressBar.style.width = `${Math.round((complete / checks.length) * 100)}%`;
+      }
+
+      function refreshBrief() {
+        const value = id => document.getElementById(id).value.trim();
+        const title = value("projectTitle") || "[Project title]";
+        const audience = value("projectAudience") || "[audience]";
+        const problem = value("projectProblem") || "[problem or question]";
+        const proof = value("projectProof") || "[finished proof]";
+        const next = value("projectNext") || "[next 30-minute action]";
+        document.getElementById("projectBrief").textContent = `${title}\nFor: ${audience}\nProblem: ${problem}\nTwo-week proof: ${proof}\nStart now: ${next}`;
+      }
+
+      checks.forEach(check => {
+        check.checked = Boolean(state.checks[check.dataset.key]);
+        check.addEventListener("change", () => {
+          state.checks[check.dataset.key] = check.checked;
+          save();
+          refreshProgress();
+        });
+      });
+
+      fields.forEach(field => {
+        field.value = state.fields[field.id] || "";
+        field.addEventListener("input", () => {
+          state.fields[field.id] = field.value;
+          save();
+          refreshBrief();
+        });
+      });
+
+      document.querySelectorAll(".copy-button").forEach(button => {
+        button.addEventListener("click", async () => {
+          const text = document.getElementById(button.dataset.target).value;
+          try {
+            await navigator.clipboard.writeText(text);
+          } catch (_) {
+            const area = document.getElementById(button.dataset.target);
+            area.focus();
+            area.select();
+            document.execCommand("copy");
+          }
+          notify("Prompt copied");
+        });
+      });
+
+      document.getElementById("resetGuide").addEventListener("click", () => {
+        if (!confirm("Reset your resume-session progress and project brief?")) return;
+        localStorage.removeItem(storageKey);
+        location.reload();
+      });
+
+      refreshBrief();
+      refreshProgress();
+    })();
+  </script>
+</body>
+</html>
