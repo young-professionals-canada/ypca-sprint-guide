@@ -3,1113 +3,495 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A guided workshop companion for turning a resume into a distinctive personal website with AI.">
-  <meta name="theme-color" content="#243678">
-  <title>Build Your Personal Website</title>
+  <meta name="description" content="The YPCA Career Academy Sprint Workshop Guide for Resume Building and Personal Website sessions.">
+  <meta name="theme-color" content="#223377">
+  <title>Sprint Workshop Guide | YPCA Career Academy</title>
   <style>
     :root {
-      --navy: #243678;
-      --coral: #f06473;
-      --blush: #fcebed;
-      --purple: #594477;
-      --ink: #263253;
-      --muted: #66708c;
-      --paper: #fcfbfa;
-      --white: #ffffff;
-      --line: #d9dbe6;
-      --soft-purple: #f0ecf8;
-      --soft-teal: #e6f4f3;
-      --teal: #1f817c;
-      --green: #4b7960;
-      --radius: 14px;
+      --navy: #223377;
+      --navy-deep: #17265f;
+      --coral: #ee626f;
+      --coral-dark: #db4f5f;
+      --blush: #fcecef;
+      --purple: #4f3970;
+      --ink: #25325a;
+      --muted: #687294;
+      --line: #dfe2ec;
+      --paper: #ffffff;
+      --wash: #f7f7fb;
+      --shadow: 0 20px 60px rgba(25, 40, 94, .12);
     }
 
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: #f3f1ee;
       color: var(--ink);
-      font-family: Inter, Arial, Helvetica, sans-serif;
+      background: var(--wash);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.55;
     }
-    button, input, select, textarea { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
     a { color: inherit; }
-    :focus-visible { outline: 3px solid #f7a2ad; outline-offset: 3px; }
+    :focus-visible { outline: 3px solid #ff9aa4; outline-offset: 4px; }
 
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 20;
-      border-top: 5px solid var(--coral);
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,.96);
-      backdrop-filter: blur(12px);
+    .site-header {
+      position: relative;
+      z-index: 5;
+      background: var(--navy);
+      color: #fff;
     }
-    .topbar-inner {
-      width: min(1180px, calc(100% - 32px));
-      min-height: 66px;
+    .header-inner {
+      width: min(1180px, calc(100% - 40px));
+      min-height: 88px;
       margin: auto;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 20px;
+      gap: 24px;
     }
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 11px;
-      color: var(--navy);
-      font-weight: 850;
-      text-decoration: none;
-    }
-    .brand-mark {
-      width: 35px;
-      height: 35px;
-      display: grid;
-      place-items: center;
-      border-radius: 8px;
-      background: var(--navy);
-      color: #fff;
-      box-shadow: inset 0 -6px 0 rgba(240,100,115,.95);
-    }
-    .top-actions { display: flex; align-items: center; gap: 8px; }
-    .progress-track { height: 4px; background: #eceaf0; }
-    .progress-bar { width: 0; height: 100%; background: var(--coral); transition: width .2s ease; }
-
-    .button {
-      min-height: 43px;
-      border: 0;
-      border-radius: 9px;
-      padding: 10px 17px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: var(--coral);
+      gap: 0;
       color: #fff;
-      cursor: pointer;
-      font-weight: 800;
+      font-weight: 850;
+      letter-spacing: -.02em;
       text-decoration: none;
-      transition: transform .16s ease, background .16s ease;
     }
-    .button:hover { transform: translateY(-2px); background: #e85567; }
-    .button.navy { background: var(--navy); }
-    .button.navy:hover { background: #1c2d68; }
-    .button.secondary { background: var(--blush); color: var(--purple); }
-    .button.secondary:hover { background: #f8dfe3; }
-    .button.ghost { background: #fff; color: var(--navy); border: 1px solid var(--line); }
-    .button.ghost:hover { background: #f7f6f9; }
-    .button.small { min-height: 38px; padding: 8px 13px; font-size: .88rem; }
+    .brand-logo { width: 168px; height: auto; display: block; filter: brightness(0) invert(1); }
+    .brand-program { margin-left: 16px; padding-left: 16px; border-left: 1px solid rgba(255,255,255,.35); font-size: 1rem; line-height: 1.1; }
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+    .header-note { color: #d9def6; font-size: .84rem; font-weight: 750; }
+    .header-link { padding: 9px 13px; border: 1px solid rgba(255,255,255,.3); border-radius: 999px; color: #fff; font-size: .78rem; font-weight: 850; text-decoration: none; }
+    .header-link:hover { background: rgba(255,255,255,.1); }
 
     .hero {
       position: relative;
       overflow: hidden;
-      min-height: 670px;
-      background: var(--navy);
       color: #fff;
-      border-bottom: 12px solid var(--coral);
+      background: var(--navy);
+      border-bottom: 10px solid var(--coral);
     }
-    .circle { position: absolute; border-radius: 50%; background: var(--purple); opacity: .88; }
-    .circle.one { width: 330px; height: 330px; right: -70px; top: -90px; }
-    .circle.two { width: 150px; height: 150px; left: -45px; bottom: -45px; }
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      background: var(--purple);
+      pointer-events: none;
+    }
+    .hero::before { width: 420px; height: 420px; top: -235px; right: -80px; }
+    .hero::after { width: 150px; height: 150px; left: -65px; bottom: -70px; opacity: .88; }
     .hero-inner {
       position: relative;
       z-index: 1;
       width: min(1180px, calc(100% - 40px));
       margin: auto;
-      padding: 64px 0 70px;
-      display: grid;
-      grid-template-columns: minmax(0, .95fr) minmax(420px, 1.05fr);
-      align-items: center;
-      gap: 70px;
+      padding: clamp(68px, 10vw, 118px) 0 clamp(76px, 10vw, 112px);
     }
     .eyebrow {
-      margin: 0 0 90px;
-      font-size: .76rem;
-      font-weight: 850;
-      letter-spacing: .18em;
+      margin: 0 0 28px;
+      color: #ff929c;
+      font-size: .78rem;
+      font-weight: 900;
+      letter-spacing: .22em;
       text-transform: uppercase;
     }
     h1 {
       margin: 0;
-      max-width: 580px;
-      font-size: clamp(3.25rem, 6vw, 5.8rem);
-      line-height: 1.01;
-      letter-spacing: -.055em;
+      max-width: 900px;
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: .98;
+      letter-spacing: -.06em;
     }
-    .hero-copy { margin: 42px 0 0; max-width: 570px; color: #f5f2fa; font-size: clamp(1.08rem, 2vw, 1.42rem); }
-    .hero-callout { margin-top: 36px; max-width: 570px; padding: 21px 24px; border-radius: 12px; background: #fff; color: var(--navy); text-align: center; font-weight: 820; }
-    .hero-actions { margin-top: 18px; display: flex; flex-wrap: wrap; gap: 9px; }
+    h1 .hero-accent { display: block; color: var(--coral); }
+    .hero-tagline {
+      margin: 28px 0 0;
+      color: #fff;
+      font-size: clamp(1.35rem, 3vw, 2rem);
+      font-weight: 850;
+      letter-spacing: -.025em;
+    }
+    .hero-copy {
+      max-width: 760px;
+      margin: 18px 0 0;
+      color: #eef0ff;
+      font-size: clamp(1.08rem, 2.1vw, 1.42rem);
+    }
+    .hero-meta {
+      margin-top: 38px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .meta-pill {
+      padding: 9px 13px;
+      border: 1px solid rgba(255,255,255,.3);
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      color: #fff;
+      font-size: .83rem;
+      font-weight: 800;
+    }
 
-    .browser {
+    .sessions {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: clamp(62px, 8vw, 104px) 0 110px;
+    }
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 34px;
+      margin-bottom: 34px;
+    }
+    .section-kicker {
+      margin: 0 0 10px;
+      color: var(--coral-dark);
+      font-size: .75rem;
+      font-weight: 900;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    h2 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      line-height: 1.04;
+      letter-spacing: -.045em;
+    }
+    .section-heading > p {
+      max-width: 440px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .session-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+    .session-card {
+      position: relative;
+      min-height: 430px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-top: 7px solid var(--coral);
+      border-radius: 18px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .session-card:hover { transform: translateY(-5px); box-shadow: 0 25px 70px rgba(25, 40, 94, .17); }
+    .card-top { padding: 30px 32px 22px; }
+    .session-number {
+      width: 45px;
+      height: 45px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 22px;
+      border-radius: 50%;
+      background: var(--coral);
+      color: #fff;
+      font-weight: 900;
+    }
+    .session-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 13px;
+      color: var(--coral-dark);
+      font-size: .76rem;
+      font-weight: 900;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .session-date::before { content: ""; width: 24px; height: 2px; background: var(--coral); }
+    .session-card h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: clamp(1.65rem, 3vw, 2.25rem);
+      line-height: 1.08;
+      letter-spacing: -.035em;
+    }
+    .session-description { margin: 18px 0 0; color: var(--muted); }
+    .outcomes {
+      margin: 0 32px;
+      padding: 22px 0 4px;
+      border-top: 1px solid var(--line);
+      display: grid;
+      gap: 10px;
+      list-style: none;
+    }
+    .outcomes li { position: relative; padding-left: 25px; color: var(--ink); font-size: .92rem; font-weight: 690; }
+    .outcomes li::before { content: "\2713"; position: absolute; left: 0; color: var(--coral-dark); font-weight: 950; }
+    .card-action {
+      min-height: 72px;
+      margin-top: auto;
+      padding: 19px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: var(--blush);
+      color: var(--navy);
+      font-weight: 900;
+      text-decoration: none;
+    }
+    .card-action span:last-child {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      transition: transform .2s ease;
+    }
+    .card-action:hover span:last-child { transform: translateX(4px); }
+
+    .day-note {
+      margin-top: 28px;
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      border-left: 6px solid var(--coral);
+      border-radius: 12px;
+      background: var(--blush);
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .day-note:hover { transform: translateY(-5px); box-shadow: 0 25px 70px rgba(25, 40, 94, .17); }
+    .day-note strong { display: block; color: var(--navy); font-size: 1.08rem; }
+    .day-note p { margin: 5px 0 0; color: var(--muted); }
+    .register {
+      flex: 0 0 auto;
+      min-height: 48px;
+      padding: 12px 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--navy);
+      color: #fff;
+      font-weight: 850;
+      text-decoration: none;
+    }
+    .register:hover { background: var(--navy-deep); }
+
+    .more-card {
       position: relative;
       overflow: hidden;
-      min-height: 470px;
-      border: 2px solid #d7d8df;
-      border-radius: 14px;
-      background: #fff;
-      color: var(--ink);
-    }
-    .browser-bar { height: 44px; display: flex; align-items: center; gap: 9px; padding: 0 18px; background: #f0f1f5; }
-    .browser-dot { width: 11px; height: 11px; border-radius: 50%; background: var(--coral); }
-    .browser-dot:nth-child(2) { background: #f4bd4f; }
-    .browser-dot:nth-child(3) { background: #6cbb7c; }
-    .browser-content { padding: 72px 42px 42px; }
-    .browser-kicker { color: var(--coral); font-size: .74rem; font-weight: 850; text-transform: uppercase; }
-    .browser h2 { margin: 25px 0 12px; color: var(--navy); font-size: 2.15rem; line-height: 1.05; letter-spacing: -.035em; }
-    .browser p { margin: 0; color: var(--muted); }
-    .browser-buttons { margin: 30px 0; display: flex; gap: 12px; }
-    .fake-button { padding: 10px 14px; border-radius: 8px; background: var(--coral); color: #fff; font-size: .72rem; font-weight: 800; }
-    .fake-button.link { background: transparent; color: var(--navy); }
-    .browser-rule { border-top: 1px solid var(--line); margin: 28px 0; }
-    .browser-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-    .browser-card { min-height: 96px; padding: 16px; border: 1px solid #e2cfd5; border-radius: 9px; background: var(--blush); }
-    .browser-card b { display: block; margin-bottom: 12px; color: var(--navy); font-size: .77rem; }
-    .browser-card span { color: var(--muted); font-size: .72rem; }
-
-    .guide {
-      width: min(1180px, calc(100% - 32px));
-      margin: 46px auto 100px;
+      margin-top: 18px;
+      padding: clamp(28px, 4vw, 42px);
       display: grid;
-      grid-template-columns: 225px minmax(0, 1fr);
-      gap: 30px;
-      align-items: start;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 38px;
+      border-radius: 16px;
+      background: var(--navy);
+      color: #fff;
+      box-shadow: var(--shadow);
+      transition: transform .2s ease, box-shadow .2s ease;
     }
-    .step-nav {
-      position: sticky;
-      top: 92px;
-      padding: 16px;
-      border: 1px solid var(--line);
-      border-top: 5px solid var(--coral);
-      border-radius: var(--radius);
-      background: #fff;
+    .more-card:hover { transform: translateY(-5px); box-shadow: 0 25px 70px rgba(25, 40, 94, .17); }
+    .more-card::after {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -95px;
+      top: -105px;
+      border-radius: 50%;
+      background: var(--purple);
+      opacity: .85;
+      pointer-events: none;
     }
-    .step-nav p { margin: 2px 9px 12px; color: var(--navy); font-size: .72rem; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; }
-    .step-nav a { display: flex; align-items: center; gap: 10px; padding: 10px 9px; border-radius: 8px; color: var(--muted); font-size: .91rem; font-weight: 700; text-decoration: none; }
-    .step-nav a:hover { background: var(--blush); color: var(--navy); }
-    .nav-number { width: 25px; height: 25px; flex: 0 0 25px; display: grid; place-items: center; border-radius: 7px; background: var(--soft-purple); color: var(--purple); font-size: .72rem; font-weight: 850; }
-
-    .content { min-width: 0; display: grid; gap: 28px; }
-    .step-panel {
-      scroll-margin-top: 92px;
-      padding: clamp(24px, 4.5vw, 48px);
-      border: 1px solid var(--line);
-      border-top: 5px solid var(--coral);
-      border-radius: var(--radius);
-      background: #fff;
+    .more-content, .more-action { position: relative; z-index: 1; }
+    .more-kicker { margin: 0 0 10px; color: #ff9ba4; font-size: .73rem; font-weight: 900; letter-spacing: .16em; text-transform: uppercase; }
+    .more-card h3 { margin: 0; font-size: clamp(1.8rem, 3.5vw, 2.6rem); line-height: 1.04; letter-spacing: -.04em; }
+    .more-copy { max-width: 770px; margin: 14px 0 0; color: #dfe3f8; }
+    .more-features { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .more-features span { padding: 7px 10px; border: 1px solid rgba(255,255,255,.22); border-radius: 999px; background: rgba(255,255,255,.07); color: #fff; font-size: .75rem; font-weight: 760; }
+    .more-action {
+      min-height: 50px;
+      padding: 13px 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: var(--coral);
+      color: #fff;
+      font-weight: 900;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform .18s ease, background .18s ease;
     }
-    .step-heading { display: grid; grid-template-columns: 45px 1fr; gap: 15px; align-items: start; }
-    .step-number { width: 45px; height: 38px; display: grid; place-items: center; border-radius: 9px; background: var(--coral); color: #fff; font-weight: 850; font-size: .82rem; }
-    .step-panel h2 { margin: 0; color: var(--navy); font-size: clamp(1.9rem, 3.5vw, 2.75rem); line-height: 1.05; letter-spacing: -.04em; }
-    .step-intro { margin: 10px 0 0; max-width: 730px; color: var(--muted); font-size: 1.02rem; }
-    .section-note { margin-top: 26px; padding: 17px 20px; border-radius: 10px; background: var(--blush); color: var(--purple); }
-    .section-note strong { color: var(--navy); }
+    .more-action:hover { transform: translateY(-2px); background: var(--coral-dark); }
 
-    .check-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 14px; }
-    .check-item { display: flex; align-items: flex-start; gap: 12px; min-height: 66px; padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: #fff; cursor: pointer; }
-    .check-item:nth-child(odd) { background: var(--blush); }
-    .check-item input { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--coral); }
-    .check-item span { color: var(--navy); font-weight: 760; }
-
-    .theme-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
-    .theme-card { overflow: hidden; border: 2px solid transparent; border-radius: 12px; background: #fff; transition: border-color .18s ease, transform .18s ease; }
-    .theme-card:hover { transform: translateY(-3px); }
-    .theme-card.selected { border-color: var(--coral); }
-    .theme-preview { position: relative; overflow: hidden; height: 230px; padding: 22px; border-bottom: 1px solid var(--line); }
-    .theme-info { padding: 20px; }
-    .theme-kicker { margin: 0 0 7px; color: var(--coral); font-size: .7rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
-    .theme-info h3 { margin: 0; color: var(--navy); font-size: 1.38rem; }
-    .theme-info p { min-height: 49px; margin: 8px 0 17px; color: var(--muted); font-size: .92rem; }
-    .theme-actions { display: flex; flex-wrap: wrap; gap: 8px; }
-
-    .classic { background: #f6f0e6; color: #332f2d; font-family: Georgia, serif; }
-    .classic .preview-top { display: flex; justify-content: space-between; padding-bottom: 9px; border-bottom: 1px solid #cdbda5; font-size: .62rem; text-transform: uppercase; letter-spacing: .12em; }
-    .classic h4 { width: 75%; margin: 27px 0 9px; font-size: 2.25rem; line-height: .92; font-weight: 500; }
-    .classic p { width: 70%; margin: 0; font-size: .72rem; }
-    .classic .seal { position: absolute; right: 22px; bottom: 20px; width: 68px; height: 68px; display: grid; place-items: center; border: 1px solid #963b4b; border-radius: 50%; color: #963b4b; font-size: 1.4rem; }
-
-    .future { background: #171d2c; color: #f6f9ff; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
-    .future::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(83,206,201,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(83,206,201,.08) 1px, transparent 1px); background-size: 25px 25px; }
-    .future .preview-top { position: relative; display: flex; justify-content: space-between; color: #53cec9; font-size: .62rem; }
-    .future h4 { position: relative; margin: 30px 0 14px; font-family: Arial, sans-serif; font-size: 2rem; line-height: .96; letter-spacing: -.05em; }
-    .metrics { position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: 8px; }
-    .metric { padding: 9px; border: 1px solid #35405a; border-radius: 6px; background: #222a3d; color: #9ca8bf; font-size: .61rem; }
-    .metric b { display: block; color: #53cec9; font-size: 1rem; }
-
-    .retro { background: #efeafb; color: var(--navy); font-family: Georgia, serif; }
-    .retro .shape { position: absolute; border-radius: 50%; background: #dfab49; }
-    .retro .shape.one { width: 145px; height: 145px; right: -30px; top: -35px; }
-    .retro .shape.two { width: 90px; height: 90px; right: 25%; bottom: -24px; background: #d26858; opacity: .85; }
-    .retro .tag { position: relative; display: inline-block; padding: 6px 12px; border-radius: 999px; background: var(--green); color: #fff; font-family: Arial, sans-serif; font-size: .62rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; }
-    .retro h4 { position: relative; width: 73%; margin: 27px 0 10px; font-size: 2.05rem; line-height: .94; font-weight: 500; }
-    .retro p { position: relative; width: 67%; margin: 0; padding-top: 9px; border-top: 2px solid var(--navy); font-family: Arial, sans-serif; font-size: .68rem; }
-
-    .minimal { background: #fafafa; color: #111; font-family: Arial, sans-serif; }
-    .minimal .preview-top { display: flex; justify-content: space-between; padding-bottom: 9px; border-bottom: 2px solid #111; font-size: .62rem; font-weight: 800; }
-    .minimal h4 { width: 80%; margin: 30px 0 12px; font-size: 2.42rem; line-height: .84; letter-spacing: -.075em; }
-    .minimal .index { display: grid; grid-template-columns: 52px 1fr; gap: 8px; align-items: center; font-size: .67rem; }
-    .minimal .index b { color: #245bdb; font-size: 1.6rem; }
-
-    .mode-switch { margin-top: 28px; display: inline-flex; gap: 6px; padding: 5px; border: 1px solid var(--line); border-radius: 11px; background: #f5f4f7; }
-    .mode-button { min-height: 40px; border: 0; border-radius: 8px; padding: 9px 15px; background: transparent; color: var(--muted); cursor: pointer; font-weight: 800; }
-    .mode-button.active { background: var(--navy); color: #fff; }
-    .mode-panel { display: none; margin-top: 24px; }
-    .mode-panel.active { display: block; }
-    .prompt-layout { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: 18px; align-items: start; }
-    .form-card, .prompt-card { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
-    .form-card { background: var(--blush); }
-    .form-card h3, .prompt-card h3, .subsection-title { margin: 0 0 8px; color: var(--navy); font-size: 1.2rem; }
-    .form-card > p, .prompt-card > p { margin: 0 0 18px; color: var(--muted); font-size: .91rem; }
-    .form-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 13px; }
-    .field { display: grid; gap: 6px; }
-    .field.full { grid-column: 1 / -1; }
-    .field label { color: var(--navy); font-size: .82rem; font-weight: 800; }
-    .field input, .field select {
-      width: 100%;
-      min-height: 43px;
-      border: 1px solid #cfd2df;
-      border-radius: 8px;
-      padding: 9px 11px;
-      background: #fff;
-      color: var(--ink);
+    footer { border-top: 1px solid var(--line); background: #fff; }
+    .footer-inner {
+      width: min(1180px, calc(100% - 40px));
+      min-height: 92px;
+      margin: auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      color: var(--muted);
+      font-size: .86rem;
     }
-    .example-row { margin: 16px 0; display: flex; flex-wrap: wrap; gap: 7px; }
-    .example-row span { width: 100%; color: var(--navy); font-size: .77rem; font-weight: 850; text-transform: uppercase; letter-spacing: .08em; }
-    .prompt-toolbar { margin-bottom: 10px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; }
-    .theme-pill { display: inline-flex; align-items: center; gap: 7px; padding: 7px 10px; border-radius: 999px; background: var(--soft-purple); color: var(--purple); font-size: .78rem; font-weight: 850; }
-    .theme-pill::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--coral); }
-    .prompt-output {
-      width: 100%;
-      min-height: 460px;
-      resize: vertical;
-      border: 1px solid #cfd2df;
-      border-radius: 9px;
-      padding: 16px;
-      background: #f8f8fa;
-      color: #2f3852;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      font-size: .79rem;
-      line-height: 1.55;
+    .footer-brand { display: flex; align-items: center; gap: 0; color: var(--navy); font-weight: 850; }
+    .footer-logo { width: 132px; height: auto; display: block; }
+    .footer-program { margin-left: 15px; padding-left: 15px; border-left: 1px solid var(--line); }
+    .footer-event-name { color: var(--navy); font-weight: 900; }
+
+    @media (max-width: 800px) {
+      .header-note { display: none; }
+      .section-heading { display: block; }
+      .section-heading > p { margin-top: 14px; }
+      .session-grid { grid-template-columns: 1fr; }
+      .session-card { min-height: 0; }
+      .day-note { align-items: stretch; flex-direction: column; }
+      .register { align-self: flex-start; }
+      .more-card { grid-template-columns: 1fr; gap: 24px; }
+      .more-action { justify-self: start; }
     }
-    .tip-line { margin-top: 13px; padding: 13px 15px; border-left: 4px solid var(--coral); background: #fff; color: var(--muted); font-size: .88rem; }
-
-    .build-flow { margin-top: 28px; display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; }
-    .flow-card { min-height: 170px; padding: 18px; border: 1px solid #4b5fa9; border-radius: 11px; background: #334b96; color: #fff; }
-    .flow-card.highlight { border-color: var(--coral); background: var(--coral); }
-    .flow-index { display: inline-grid; place-items: center; min-width: 47px; height: 30px; padding: 0 10px; border-radius: 8px; background: #fff; color: var(--navy); font-size: .75rem; font-weight: 900; }
-    .flow-card h3 { margin: 28px 0 8px; color: #fff; font-size: 1.08rem; }
-    .flow-card p { margin: 0; color: #e9ecfb; font-size: .88rem; }
-    .build-actions { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 9px; }
-    .dark-panel { margin-top: 25px; padding: 26px; border-radius: 12px; background: var(--navy); color: #fff; }
-    .dark-panel h3 { margin: 0; color: #fff; }
-    .dark-panel p { margin: 8px 0 0; color: #e6e9f5; }
-    details { margin-top: 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
-    summary { padding: 15px 17px; color: var(--navy); cursor: pointer; font-weight: 800; }
-    .details-body { padding: 0 17px 17px; color: var(--muted); }
-
-    .review-list { margin-top: 27px; display: grid; gap: 11px; }
-    .review-item { display: grid; grid-template-columns: 25px 1fr auto; gap: 12px; align-items: center; padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
-    .review-item:nth-child(even) { background: var(--soft-purple); }
-    .review-item input { width: 19px; height: 19px; accent-color: var(--coral); }
-    .review-item strong { display: block; color: var(--navy); }
-    .review-item span { color: var(--muted); font-size: .85rem; }
-    .repair-grid { margin-top: 25px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 11px; }
-    .repair-card { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: var(--blush); }
-    .repair-card strong { color: var(--navy); font-size: .91rem; }
-
-    .publish-grid { margin-top: 28px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
-    .publish-card { padding: 22px; border: 1px solid var(--line); border-radius: 11px; background: #fff; }
-    .publish-card:first-child { background: var(--soft-teal); }
-    .publish-card h3 { margin: 0 0 9px; color: var(--navy); }
-    .publish-card p { margin: 0 0 16px; color: var(--muted); }
-    .numbered-list { margin: 0; padding: 0; list-style: none; counter-reset: publish; display: grid; gap: 10px; }
-    .numbered-list li { counter-increment: publish; display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; color: #46516e; }
-    .numbered-list li::before { content: counter(publish); width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; background: var(--navy); color: #fff; font-size: .74rem; font-weight: 850; }
-    .publish-check { margin-top: 18px; display: flex; align-items: flex-start; gap: 10px; padding: 14px; border-radius: 9px; background: var(--blush); color: var(--navy); font-weight: 800; }
-    .publish-check input { width: 19px; height: 19px; accent-color: var(--coral); }
-
-    .library-grid { margin-top: 26px; display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
-    .library-item { min-height: 72px; display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 15px; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
-    .library-item:nth-child(4n+1), .library-item:nth-child(4n+4) { background: var(--blush); }
-    .library-item strong { color: var(--navy); font-size: .92rem; }
-    .finish-banner { margin-top: 25px; padding: 27px; border-radius: 12px; background: var(--navy); color: #fff; text-align: center; }
-    .finish-banner h3 { margin: 0 0 8px; color: #fff; font-size: 1.45rem; }
-    .finish-banner p { margin: 0 0 18px; color: #e9ebf4; }
-
-    .site-footer { position: relative; overflow: hidden; padding: 58px 20px 70px; border-bottom: 12px solid var(--coral); background: var(--navy); color: #fff; text-align: center; }
-    .site-footer::after { content: ""; position: absolute; width: 220px; height: 220px; right: -50px; top: -100px; border-radius: 50%; background: var(--purple); }
-    .site-footer > * { position: relative; z-index: 1; }
-    .site-footer strong { display: block; margin-bottom: 8px; font-size: 1.3rem; }
-    .site-footer p { margin: 0; color: #e5e8f5; }
-
-    dialog { width: min(720px, calc(100% - 28px)); max-height: 86vh; overflow: auto; border: 0; border-top: 6px solid var(--coral); border-radius: 13px; padding: 0; color: var(--ink); }
-    dialog::backdrop { background: rgba(18,27,62,.68); }
-    .dialog-body { padding: 26px; }
-    .dialog-top { display: flex; justify-content: space-between; gap: 20px; align-items: start; }
-    .dialog-top h2 { margin: 0; color: var(--navy); }
-    .dialog-close { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--navy); cursor: pointer; font-size: 1.2rem; }
-    .dialog-copy { margin: 18px 0; color: var(--muted); }
-    .dialog-prompt { white-space: pre-wrap; padding: 16px; border-radius: 9px; background: #f5f4f7; color: #303a57; font-family: ui-monospace, monospace; font-size: .78rem; }
-
-    .toast { position: fixed; right: 18px; bottom: 18px; z-index: 50; transform: translateY(130%); padding: 12px 17px; border-radius: 9px; background: var(--navy); color: #fff; font-weight: 800; transition: transform .22s ease; }
-    .toast.show { transform: translateY(0); }
-
-    @media (max-width: 940px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
-      .eyebrow { margin-bottom: 54px; }
-      .browser { min-height: 430px; }
-      .guide { grid-template-columns: 1fr; }
-      .step-nav { position: static; display: flex; gap: 5px; overflow-x: auto; }
-      .step-nav p { display: none; }
-      .step-nav a { white-space: nowrap; }
+    @media (max-width: 520px) {
+      .header-inner, .hero-inner, .sessions, .footer-inner { width: min(100% - 28px, 1180px); }
+      .hero-inner { padding-top: 56px; }
+      .brand-logo { width: 132px; }
+      .brand-program { margin-left: 10px; padding-left: 10px; font-size: .75rem; }
+      .header-link { display: none; }
+      .card-top { padding: 26px 24px 20px; }
+      .outcomes { margin-inline: 24px; }
+      .card-action { padding-inline: 24px; }
+      .day-note { padding: 22px; }
+      .more-action { width: 100%; max-width: 100%; white-space: normal; text-align: center; }
+      .footer-inner { padding: 24px 0; align-items: flex-start; flex-direction: column; justify-content: center; }
+      .footer-logo { width: 118px; }
     }
-    @media (max-width: 650px) {
-      .topbar-inner { min-height: 58px; }
-      .brand { max-width: 155px; font-size: .72rem; line-height: 1.15; text-transform: uppercase; letter-spacing: .06em; }
-      .top-actions .button.ghost { display: none; }
-      .hero-inner { width: min(100% - 24px, 1180px); padding-top: 42px; }
-      .hero { min-height: auto; }
-      .eyebrow { margin-bottom: 42px; }
-      h1 { font-size: clamp(3rem, 17vw, 4.7rem); }
-      .browser { min-height: 390px; }
-      .browser-content { padding: 46px 24px 30px; }
-      .browser-cards { grid-template-columns: 1fr; }
-      .browser-card:nth-child(2) { display: none; }
-      .guide { width: min(100% - 20px, 1180px); margin-top: 24px; }
-      .step-panel { padding: 22px 18px; }
-      .step-heading { grid-template-columns: 39px 1fr; gap: 11px; }
-      .step-number { width: 39px; height: 34px; }
-      .check-grid, .theme-grid, .form-grid, .build-flow, .repair-grid, .publish-grid, .library-grid { grid-template-columns: 1fr; }
-      .prompt-layout { grid-template-columns: 1fr; }
-      .review-item { grid-template-columns: 25px 1fr; }
-      .review-item .button { grid-column: 2; justify-self: start; }
-      .theme-preview { height: 210px; }
+    @media (max-width: 360px) {
+      .brand-logo { width: 116px; }
+      .brand-program { font-size: .7rem; }
+      h1 { font-size: 2.65rem; }
+      .hero-meta { gap: 8px; }
+      .meta-pill { padding: 8px 10px; font-size: .75rem; }
     }
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
-    }
-    @media print {
-      .topbar, .step-nav, .hero-actions, .button, .mode-switch, dialog, .toast { display: none !important; }
-      body { background: #fff; }
-      .hero { min-height: auto; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-      .hero-inner { grid-template-columns: 1fr 1fr; padding: 34px 0; }
-      .eyebrow { margin-bottom: 30px; }
-      h1 { font-size: 3.5rem; }
-      .guide { display: block; width: 100%; margin: 20px 0; }
-      .content { display: block; }
-      .step-panel { break-inside: avoid; margin: 0 0 18px; box-shadow: none; }
-      .theme-grid, .build-flow, .publish-grid { grid-template-columns: repeat(2,1fr); }
-      .prompt-output { min-height: 600px; overflow: visible; }
+      html { scroll-behavior: auto; }
+      .session-card, .day-note, .more-card, .card-action span:last-child { transition: none; }
     }
   </style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="brand" href="#top" aria-label="Guide home"><span>Career Sprint · Personal Website Guide</span></a>
-      <div class="top-actions">
-        <button class="button ghost small" id="downloadGuide" type="button">Download HTML</button>
-        <button class="button ghost small" type="button" onclick="window.print()">Print / PDF</button>
-        <a class="button small" href="#prepare">Start</a>
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="YPCA Career Academy Sprint home">
+        <img class="brand-logo" src="./assets/ypca-wordmark.png" alt="Young Professionals Canada">
+        <span class="brand-program">Career Academy</span>
+      </a>
+      <div class="header-actions">
+        <span class="header-note">Sprint · August 17-30, 2026</span>
+        <a class="header-link" href="#sessions">View sessions</a>
       </div>
     </div>
-    <div class="progress-track" aria-hidden="true"><div class="progress-bar" id="progressBar"></div></div>
   </header>
 
-  <main id="top">
+  <main>
     <section class="hero">
-      <div class="circle one"></div><div class="circle two"></div>
       <div class="hero-inner">
-        <div>
-          <p class="eyebrow">Career Sprint · Personal Website Workshop</p>
-          <h1>Build Your Personal Website</h1>
-          <p class="hero-copy">Use AI tools. No coding required.</p>
-          <div class="hero-callout">Bring your resume · Build the site · Leave with a live link</div>
-          <div class="hero-actions">
-            <a class="button" href="#prepare">Start the guide</a>
-            <a class="button secondary" href="#themes">View examples</a>
-          </div>
-        </div>
-        <div class="browser" aria-hidden="true">
-          <div class="browser-bar"><span class="browser-dot"></span><span class="browser-dot"></span><span class="browser-dot"></span></div>
-          <div class="browser-content">
-            <span class="browser-kicker">Student · Researcher · Builder</span>
-            <h2>Your work, interests, and direction — in one clear place.</h2>
-            <div class="browser-buttons"><span class="fake-button">VIEW MY WORK</span><span class="fake-button link">RESUME</span></div>
-            <div class="browser-rule"></div>
-            <div class="browser-cards">
-              <div class="browser-card"><b>Selected project</b><span>What I did + proof</span></div>
-              <div class="browser-card"><b>Research / case study</b><span>Question + method + result</span></div>
-            </div>
-          </div>
+        <p class="eyebrow">YPCA · Career Academy presents</p>
+        <h1>Sprint <span class="hero-accent">Workshop Guide</span></h1>
+        <p class="hero-tagline">Choose your session. Build the real thing.</p>
+        <p class="hero-copy">The August 22 workshops are separate sessions, each with its own hands-on guide. Open the guide for the session you are attending.</p>
+        <div class="hero-meta" aria-label="Event details">
+          <span class="meta-pill">Saturday, August 22</span>
+          <span class="meta-pill">In person</span>
+          <span class="meta-pill">Bring your laptop</span>
         </div>
       </div>
     </section>
 
-    <div class="guide">
-      <nav class="step-nav" aria-label="Guide steps">
-        <p>Workshop steps</p>
-        <a href="#prepare"><span class="nav-number">01</span>Prepare</a>
-        <a href="#themes"><span class="nav-number">02</span>Choose</a>
-        <a href="#prompt"><span class="nav-number">03</span>Prompt</a>
-        <a href="#build"><span class="nav-number">04</span>Build</a>
-        <a href="#review"><span class="nav-number">05</span>Review</a>
-        <a href="#publish"><span class="nav-number">06</span>Publish</a>
-      </nav>
-
-      <div class="content">
-        <section class="step-panel" id="prepare">
-          <div class="step-heading">
-            <div class="step-number">01</div>
-            <div>
-              <h2>Prepare your resume</h2>
-              <p class="step-intro">Your resume is the source of truth. You will give it directly to the AI website builder rather than retyping everything here.</p>
-            </div>
-          </div>
-          <div class="check-grid">
-            <label class="check-item"><input type="checkbox" data-progress="resume"><span>Resume file is ready</span></label>
-            <label class="check-item"><input type="checkbox" data-progress="linkedin"><span>LinkedIn link is ready</span></label>
-            <label class="check-item"><input type="checkbox" data-progress="work"><span>Project or work links are ready</span></label>
-            <label class="check-item"><input type="checkbox" data-progress="email"><span>Professional email is ready</span></label>
-          </div>
-          <div class="section-note"><strong>Before publishing:</strong> remove your home address, student number, references, and anything else you do not want available publicly.</div>
-        </section>
-
-        <section class="step-panel" id="themes">
-          <div class="step-heading">
-            <div class="step-number">02</div>
-            <div>
-              <h2>Choose a visual direction</h2>
-              <p class="step-intro">Each field can use a different layout and style. These are starting points, not rules.</p>
-            </div>
-          </div>
-          <div class="theme-grid">
-            <article class="theme-card" data-theme-card="classic">
-              <div class="theme-preview classic" aria-hidden="true">
-                <div class="preview-top"><span>Selected inquiries</span><span>2026</span></div>
-                <h4>Ideas, mind &amp; agency.</h4>
-                <p>Research at the intersection of metaphysics and decision-making.</p>
-                <div class="seal">MA</div>
-              </div>
-              <div class="theme-info">
-                <p class="theme-kicker">Musab example</p><h3>Classic Editorial</h3>
-                <p>Scholarly, timeless and text-led. Strong for research, writing, history and law.</p>
-                <div class="theme-actions"><button class="button small choose-theme" type="button" data-theme="classic">Choose</button><button class="button ghost small theme-details" type="button" data-theme="classic">Details</button></div>
-              </div>
-            </article>
-
-            <article class="theme-card" data-theme-card="future">
-              <div class="theme-preview future" aria-hidden="true">
-                <div class="preview-top"><span>THE AYDEMIR REVIEW</span><span>ANALYSIS / 04</span></div>
-                <h4>Evidence before opinion.</h4>
-                <div class="metrics"><div class="metric"><b>DCF</b>Method</div><div class="metric"><b>02</b>Case studies</div><div class="metric"><b>↓</b>Risk view</div></div>
-              </div>
-              <div class="theme-info">
-                <p class="theme-kicker">Mirza example</p><h3>Futuristic Analytical</h3>
-                <p>Precise, data-led and forward-looking. Strong for finance, economics and analytics.</p>
-                <div class="theme-actions"><button class="button small choose-theme" type="button" data-theme="future">Choose</button><button class="button ghost small theme-details" type="button" data-theme="future">Details</button></div>
-              </div>
-            </article>
-
-            <article class="theme-card" data-theme-card="retro">
-              <div class="theme-preview retro" aria-hidden="true">
-                <span class="shape one"></span><span class="shape two"></span><span class="tag">Human behaviour</span>
-                <h4>Curious about what shapes us.</h4><p>Research · Community · Learning</p>
-              </div>
-              <div class="theme-info">
-                <p class="theme-kicker">Psychology example</p><h3>Retro Humanist</h3>
-                <p>Warm, curious and people-focused. Strong for psychology, education and social science.</p>
-                <div class="theme-actions"><button class="button small choose-theme" type="button" data-theme="retro">Choose</button><button class="button ghost small theme-details" type="button" data-theme="retro">Details</button></div>
-              </div>
-            </article>
-
-            <article class="theme-card" data-theme-card="minimal">
-              <div class="theme-preview minimal" aria-hidden="true">
-                <div class="preview-top"><span>PORTFOLIO</span><span>TORONTO / CA</span></div>
-                <h4>Clear work. No noise.</h4><div class="index"><b>01</b><span>Selected work and experience</span></div>
-              </div>
-              <div class="theme-info">
-                <p class="theme-kicker">Flexible example</p><h3>Clean Minimal</h3>
-                <p>Direct, adaptable and recruiter-friendly. Strong when the work should lead.</p>
-                <div class="theme-actions"><button class="button small choose-theme" type="button" data-theme="minimal">Choose</button><button class="button ghost small theme-details" type="button" data-theme="minimal">Details</button></div>
-              </div>
-            </article>
-          </div>
-          <div class="section-note"><strong>The design can change.</strong> The information must stay accurate.</div>
-        </section>
-
-        <section class="step-panel" id="prompt">
-          <div class="step-heading">
-            <div class="step-number">03</div>
-            <div>
-              <h2>Create your prompt</h2>
-              <p class="step-intro">Use the ready-made prompt or personalize it with a few details. In both cases, your resume remains the source of truth.</p>
-            </div>
-          </div>
-
-          <div class="mode-switch" role="tablist" aria-label="Prompt options">
-            <button class="mode-button active" id="quickTab" type="button" role="tab" aria-selected="true" aria-controls="quickPanel" data-mode="quick">Quick prompt</button>
-            <button class="mode-button" id="personalTab" type="button" role="tab" aria-selected="false" aria-controls="personalPanel" data-mode="personal">Personalize it</button>
-          </div>
-
-          <div class="mode-panel active" id="quickPanel" role="tabpanel" aria-labelledby="quickTab">
-            <div class="prompt-card">
-              <div class="prompt-toolbar">
-                <div>
-                  <h3>Field-agnostic website prompt</h3>
-                  <span class="theme-pill" id="quickThemePill">Clean Minimal selected</span>
-                </div>
-                <button class="button copy-main-prompt" type="button" data-target="quickPrompt">Copy prompt</button>
-              </div>
-              <textarea class="prompt-output" id="quickPrompt" readonly aria-label="Ready-made website prompt"></textarea>
-              <div class="tip-line"><strong>Next:</strong> paste this into v0, then attach or paste your resume in the same conversation.</div>
-            </div>
-          </div>
-
-          <div class="mode-panel" id="personalPanel" role="tabpanel" aria-labelledby="personalTab">
-            <div class="prompt-layout">
-              <div class="form-card">
-                <h3>Add a few details</h3>
-                <p>This does not replace your resume. It tells the builder what to emphasize.</p>
-                <div class="example-row">
-                  <span>Load an example</span>
-                  <button class="button ghost small load-example" type="button" data-example="musab">Musab</button>
-                  <button class="button ghost small load-example" type="button" data-example="mirza">Mirza</button>
-                  <button class="button ghost small load-example" type="button" data-example="psych">Psychology</button>
-                </div>
-                <div class="form-grid">
-                  <div class="field full"><label for="personName">Full name</label><input id="personName" autocomplete="name" placeholder="Your full name"></div>
-                  <div class="field full"><label for="currentRole">Current role or program</label><input id="currentRole" placeholder="Fourth-year economics student"></div>
-                  <div class="field"><label for="targetRole">Target role</label><input id="targetRole" placeholder="Policy analyst"></div>
-                  <div class="field"><label for="goal">Primary goal</label><select id="goal"><option>Full-time job</option><option>Internship</option><option>Research opportunity</option><option>Freelance clients</option><option>Collaboration</option></select></div>
-                  <div class="field full"><label for="personalDetail">Optional personal detail</label><input id="personalDetail" placeholder="Chess, photography, volunteering, or another interest"></div>
-                </div>
-                <button class="button navy" id="generatePrompt" type="button" style="margin-top:16px">Generate my prompt</button>
-              </div>
-              <div class="prompt-card">
-                <div class="prompt-toolbar">
-                  <div>
-                    <h3>Your personalized prompt</h3>
-                    <span class="theme-pill" id="personalThemePill">Clean Minimal selected</span>
-                  </div>
-                  <button class="button copy-main-prompt" type="button" data-target="personalPrompt">Copy prompt</button>
-                </div>
-                <textarea class="prompt-output" id="personalPrompt" readonly aria-label="Personalized website prompt"></textarea>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section class="step-panel" id="build" style="background:#243678;border-color:#243678">
-          <div class="step-heading">
-            <div class="step-number" style="background:#fff;color:#243678">04</div>
-            <div>
-              <h2 style="color:#fff">Generate with v0</h2>
-              <p class="step-intro" style="color:#e6e9f5">Describe → Generate → Review → Edit → Publish</p>
-            </div>
-          </div>
-          <div class="build-flow">
-            <article class="flow-card"><span class="flow-index">01</span><h3>Open v0</h3><p>Sign in and start a new project.</p></article>
-            <article class="flow-card"><span class="flow-index">02</span><h3>Paste the prompt</h3><p>Use the prompt you copied above.</p></article>
-            <article class="flow-card"><span class="flow-index">03</span><h3>Add your resume</h3><p>Attach the file or paste its text.</p></article>
-            <article class="flow-card"><span class="flow-index">04</span><h3>Generate</h3><p>Create the first version of the site.</p></article>
-            <article class="flow-card"><span class="flow-index">05</span><h3>Review and edit</h3><p>Check facts, links, wording and mobile layout.</p></article>
-            <article class="flow-card highlight"><span class="flow-index">06</span><h3>Publish</h3><p>Test the live version and share the link.</p></article>
-          </div>
-          <div class="build-actions">
-            <a class="button" id="openV0" href="https://v0.dev" target="_blank" rel="noopener">Open v0 ↗</a>
-            <button class="button secondary copy-main-prompt" type="button" data-target="quickPrompt">Copy prompt again</button>
-          </div>
-          <details>
-            <summary>Using Lovable or Replit instead?</summary>
-            <div class="details-body">The same prompt works in other AI website builders. The button names and publishing screens will differ, but the workflow stays the same: paste the prompt, provide your resume, review the result, edit, and publish.</div>
-          </details>
-        </section>
-
-        <section class="step-panel" id="review">
-          <div class="step-heading">
-            <div class="step-number">05</div>
-            <div>
-              <h2>Review before publishing</h2>
-              <p class="step-intro">AI creates the first draft. You are responsible for accuracy, clarity, and what becomes public.</p>
-            </div>
-          </div>
-          <div class="review-list">
-            <div class="review-item"><input type="checkbox" data-review="identity" aria-label="My identity is clear"><span><strong>My identity is clear</strong>Someone can understand my field and direction in five seconds.</span><button class="button ghost small copy-repair" type="button" data-repair="identity">Fix prompt</button></div>
-            <div class="review-item"><input type="checkbox" data-review="proof" aria-label="My strongest work is easy to find"><span><strong>My strongest work is easy to find</strong>Projects, research, cases, or experience appear near the top.</span><button class="button ghost small copy-repair" type="button" data-repair="proof">Fix prompt</button></div>
-            <div class="review-item"><input type="checkbox" data-review="voice" aria-label="The writing sounds like me"><span><strong>The writing sounds like me</strong>The language is direct, natural, and not filled with buzzwords.</span><button class="button ghost small copy-repair" type="button" data-repair="voice">Fix prompt</button></div>
-            <div class="review-item"><input type="checkbox" data-review="facts" aria-label="Every claim is accurate"><span><strong>Every claim is accurate</strong>No invented achievements, employers, projects, or statistics.</span><button class="button ghost small copy-repair" type="button" data-repair="facts">Fix prompt</button></div>
-            <div class="review-item"><input type="checkbox" data-review="links" aria-label="Every link works"><span><strong>Every link works</strong>Resume, LinkedIn, email, projects, and navigation have been tested.</span><button class="button ghost small copy-repair" type="button" data-repair="links">Fix prompt</button></div>
-            <div class="review-item"><input type="checkbox" data-review="mobile" aria-label="The mobile version works"><span><strong>The mobile version works</strong>Text is readable and nothing overlaps on a phone.</span><button class="button ghost small copy-repair" type="button" data-repair="mobile">Fix prompt</button></div>
-            <div class="review-item"><input type="checkbox" data-review="privacy" aria-label="Private information is removed"><span><strong>Private information is removed</strong>No home address, student number, or unwanted phone number.</span><button class="button ghost small copy-repair" type="button" data-repair="privacy">Fix prompt</button></div>
-          </div>
-          <div class="section-note"><strong>Important:</strong> a polished design cannot compensate for inaccurate information.</div>
-        </section>
-
-        <section class="step-panel" id="publish">
-          <div class="step-heading">
-            <div class="step-number">06</div>
-            <div>
-              <h2>Publish your website</h2>
-              <p class="step-intro">Publish a simple first version. You can improve it later.</p>
-            </div>
-          </div>
-          <div class="publish-grid">
-            <article class="publish-card">
-              <h3>Publish from v0</h3>
-              <p>Get the public link first. That is enough to complete the workshop.</p>
-              <ol class="numbered-list">
-                <li>Open the <strong>Publish</strong> menu in your v0 project.</li>
-                <li>Publish the production version.</li>
-                <li>Open the public link and test it.</li>
-                <li>Use <strong>Publish Changes</strong> after future edits.</li>
-              </ol>
-              <div class="build-actions"><a class="button navy small" href="https://v0.dev/docs/deployments" target="_blank" rel="noopener">Official v0 guide ↗</a></div>
-            </article>
-            <article class="publish-card">
-              <h3>Connect a custom domain</h3>
-              <p>This is optional and can be completed after the workshop.</p>
-              <ol class="numbered-list">
-                <li>Open the related Vercel project.</li>
-                <li>Go to <strong>Settings → Domains</strong>.</li>
-                <li>Enter the domain you own.</li>
-                <li>Copy the DNS records Vercel displays into your domain provider.</li>
-                <li>Wait for Vercel to verify the configuration.</li>
-              </ol>
-              <div class="build-actions"><a class="button ghost small" href="https://vercel.com/docs/domains/working-with-domains/add-a-domain" target="_blank" rel="noopener">Official domain guide ↗</a></div>
-            </article>
-          </div>
-          <div class="section-note"><strong>Your domain can stay with its current provider.</strong> You normally connect it using the DNS values shown by Vercel. Domain registration itself may cost money.</div>
-          <label class="publish-check"><input type="checkbox" id="publishedCheck"><span>I opened and tested my public website link.</span></label>
-        </section>
-
-        <section class="step-panel" id="keep-improving">
-          <div class="step-heading">
-            <div class="step-number">+</div>
-            <div>
-              <h2>Keep improving it</h2>
-              <p class="step-intro">Use these prompts when you add new work, change direction, or want to improve a weak result.</p>
-            </div>
-          </div>
-          <div class="library-grid">
-            <div class="library-item"><strong>Make it less generic</strong><button class="button ghost small copy-library" type="button" data-library="generic">Copy</button></div>
-            <div class="library-item"><strong>Add a new project</strong><button class="button ghost small copy-library" type="button" data-library="project">Copy</button></div>
-            <div class="library-item"><strong>Improve mobile layout</strong><button class="button ghost small copy-library" type="button" data-library="mobile">Copy</button></div>
-            <div class="library-item"><strong>Improve accessibility</strong><button class="button ghost small copy-library" type="button" data-library="accessibility">Copy</button></div>
-            <div class="library-item"><strong>Change the visual theme</strong><button class="button ghost small copy-library" type="button" data-library="theme">Copy</button></div>
-            <div class="library-item"><strong>Update my experience</strong><button class="button ghost small copy-library" type="button" data-library="experience">Copy</button></div>
-            <div class="library-item"><strong>Improve search visibility</strong><button class="button ghost small copy-library" type="button" data-library="seo">Copy</button></div>
-            <div class="library-item"><strong>Remove invented content</strong><button class="button ghost small copy-library" type="button" data-library="accuracy">Copy</button></div>
-          </div>
-          <div class="finish-banner">
-            <h3>One clear page is enough.</h3>
-            <p>Publish the first useful version, share it, and improve it as your work grows.</p>
-            <div class="hero-actions" style="justify-content:center"><button class="button" id="downloadGuideBottom" type="button">Download this guide</button><button class="button secondary" type="button" onclick="window.print()">Save as PDF</button><button class="button ghost" id="resetGuide" type="button">Reset progress</button></div>
-          </div>
-        </section>
+    <section class="sessions" id="sessions" aria-labelledby="sessions-title">
+      <div class="section-heading">
+        <div>
+          <p class="section-kicker">Two sessions · Two guides</p>
+          <h2 id="sessions-title">Select your workshop</h2>
+        </div>
+        <p>Start with the resume session, join the personal website session, or attend both. Your progress stays inside each guide.</p>
       </div>
-    </div>
+
+      <div class="session-grid">
+        <article class="session-card">
+          <div class="card-top">
+            <div class="session-number" aria-hidden="true">1</div>
+            <div class="session-date">1:00-4:00 PM · In person</div>
+            <h3>Resume Building + Tailoring + Project Building</h3>
+            <p class="session-description">Build a polished base resume, learn a repeatable tailoring workflow, and define a standout project you can finish.</p>
+          </div>
+          <ul class="outcomes" aria-label="Session outcomes">
+            <li>A ready-to-send base resume</li>
+            <li>A truthful job-tailoring workflow</li>
+            <li>A focused project brief and next step</li>
+          </ul>
+          <a class="card-action" href="./resume-session/">
+            <span>Open resume session guide</span><span aria-hidden="true">&rarr;</span>
+          </a>
+        </article>
+
+        <article class="session-card">
+          <div class="card-top">
+            <div class="session-number" aria-hidden="true">2</div>
+            <div class="session-date">4:30-6:30 PM · In person</div>
+            <h3>Personal Website Workshop</h3>
+            <p class="session-description">Use your resume as the source of truth and build a simple personal website with AI - no coding required.</p>
+          </div>
+          <ul class="outcomes" aria-label="Session outcomes">
+            <li>A clear visual direction and prompt</li>
+            <li>A site with your bio, projects, and resume</li>
+            <li>A public link ready to share</li>
+          </ul>
+          <a class="card-action" href="./personal-website/">
+            <span>Open personal website guide</span><span aria-hidden="true">&rarr;</span>
+          </a>
+        </article>
+      </div>
+
+      <aside class="day-note">
+        <div>
+          <strong>Have you registered for the LinkedIn workshop on August 29?</strong>
+          <p>Reserve your spot and take the next step toward building a stronger professional presence and network.</p>
+        </div>
+        <a class="register" href="https://form.jotform.com/262157652687064" target="_blank" rel="noopener">Register now &rarr;</a>
+      </aside>
+
+      <aside class="more-card" aria-labelledby="more-title">
+        <div class="more-content">
+          <p class="more-kicker">Keep building after the sprint</p>
+          <h3 id="more-title">Interested in more?</h3>
+          <p class="more-copy">Explore the YP Career Academy for personalized career assessment, tier-based mentoring, professional connections, and practical guidance to turn your next career move into a clear roadmap.</p>
+          <div class="more-features" aria-label="Career Academy highlights">
+            <span>Personalized assessment</span>
+            <span>One-on-one mentoring</span>
+            <span>Career roadmap</span>
+          </div>
+        </div>
+        <a class="more-action" href="https://log.youngprofessionalscanada.ca/" target="_blank" rel="noopener">Explore the Career Academy &rarr;</a>
+      </aside>
+    </section>
   </main>
 
-  <footer class="site-footer">
-    <strong>Build Your Personal Website</strong>
-    <p>Career Sprint · Personal Website Workshop</p>
-  </footer>
-
-  <dialog id="themeDialog" aria-labelledby="dialogTitle">
-    <div class="dialog-body">
-      <div class="dialog-top"><h2 id="dialogTitle">Theme details</h2><button class="dialog-close" id="closeDialog" type="button" aria-label="Close">×</button></div>
-      <p class="dialog-copy" id="dialogDescription"></p>
-      <div class="dialog-prompt" id="dialogPrompt"></div>
-      <button class="button" id="copyDialogPrompt" type="button" style="margin-top:16px">Copy theme prompt</button>
+  <footer>
+    <div class="footer-inner">
+      <span class="footer-brand"><img class="footer-logo" src="./assets/ypca-wordmark.png" alt="Young Professionals Canada"><span class="footer-program">Career Academy</span></span>
+      <span><span class="footer-event-name">Sprint</span> · August 17-30, 2026</span>
     </div>
-  </dialog>
-
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-  <script>
-    (() => {
-      const storageKey = "career-sprint-guide-v2";
-      const themeNames = {
-        classic: "Classic Editorial",
-        future: "Futuristic Analytical",
-        retro: "Retro Humanist",
-        minimal: "Clean Minimal"
-      };
-      const themeDescriptions = {
-        classic: "A contemporary academic-journal experience: scholarly, calm, text-led, and free from dark-academia clichés.",
-        future: "A precise analytical interface: structured evidence, real metrics, and restrained data-inspired motion without fake dashboards.",
-        retro: "A warm human-centred experience inspired by social-science publications and field notes, kept professional rather than childish.",
-        minimal: "A strict typography-led system that gives projects and experience maximum clarity with almost no visual noise."
-      };
-      const themePrompts = {
-        classic: [
-          "VISUAL THEME — CLASSIC EDITORIAL",
-          "Create the experience of a contemporary academic journal or beautifully typeset essay.",
-          "- Warm ivory background, charcoal text, deep forest green, and restrained burgundy accents.",
-          "- Use an elegant editorial serif for headings and a highly readable sans serif for body text.",
-          "- Use chapter-style sections, narrow readable text columns, thin dividers, small section numbers, and a table-of-contents style navigation.",
-          "- Present research, writing, projects, or education as editorial entries rather than generic cards.",
-          "- Use gentle text reveals and understated underline interactions.",
-          "- Avoid Greek statues, marble columns, parchment, quill pens, and stereotypical dark-academia imagery."
-        ].join("\n"),
-        future: [
-          "VISUAL THEME — FUTURISTIC ANALYTICAL",
-          "Create a precise, forward-looking experience inspired by modern analytical products.",
-          "- Use deep navy, off-white, controlled cyan, and one restrained green accent.",
-          "- Use a strong geometric sans serif with monospace reserved for numbers and labels.",
-          "- Organize work as Problem → Analysis → Decision → Outcome.",
-          "- Use modular grids, structured panels, real metrics, and subtle line or grid motion.",
-          "- Never create fake charts, market results, statistics, or unsupported performance claims.",
-          "- Avoid cryptocurrency aesthetics, neon overload, and fake trading-terminal interfaces."
-        ].join("\n"),
-        retro: [
-          "VISUAL THEME — RETRO HUMANIST",
-          "Create a warm people-focused experience inspired by 1970s social-science publications and research notebooks.",
-          "- Use cream, terracotta, mustard, dusty blue, and dark brown.",
-          "- Pair a characterful serif heading font with a clean sans-serif body font.",
-          "- Use organic shapes, field-note labels, layered sections, and carefully controlled rounded forms.",
-          "- Present work through questions, observations, methods, contributions, and findings.",
-          "- Use gentle paper-layer or card-shift interactions.",
-          "- Avoid cartoonish visuals, brain icons, therapy clichés, fake patient stories, and unsupported clinical claims."
-        ].join("\n"),
-        minimal: [
-          "VISUAL THEME — CLEAN MINIMAL",
-          "Create a strict typography-led personal website inspired by Swiss graphic design.",
-          "- Use near-white, black, and one strong cobalt or coral accent.",
-          "- Use a clean sans-serif typeface, a disciplined grid, strong left alignment, and generous whitespace.",
-          "- Use an oversized name, clear section numbering, and a compact visual index for projects and experience.",
-          "- Keep motion minimal and functional.",
-          "- Build personality through wording, typography, work samples, and one intentional accent colour.",
-          "- Avoid decorative clutter, empty oversized sections, excessive cards, and generic floating shapes."
-        ].join("\n")
-      };
-      const repairPrompts = {
-        identity: "Rewrite the hero section so a recruiter can understand my current role or program, field, and target opportunity within five seconds. Keep the wording specific, concise, and supported by my resume.",
-        proof: "Reorganize the website so my two to four strongest projects, research items, case studies, or experiences appear near the top. For each one, clearly show what it was, what I contributed, and what it demonstrates.",
-        voice: "Rewrite the website in a natural, direct voice. Remove generic phrases such as passionate individual, visionary, results-driven, dynamic professional, and innovative thinker. Keep the facts unchanged.",
-        facts: "Audit the entire website against my resume. Remove every invented claim, statistic, skill, employer, publication, award, project, testimonial, and qualification. Keep only information supported by the source material.",
-        links: "Review every navigation item, email link, social profile, project link, and resume button. Fix broken targets and remove buttons that do not have a real destination.",
-        mobile: "Audit the website at common mobile widths. Fix overlapping content, horizontal scrolling, clipped text, oversized headings, crowded buttons, and unreadable project layouts without weakening the desktop design.",
-        privacy: "Remove private or unnecessary personal information from the public website, including home address, student number, references, and any phone number not explicitly approved for publishing."
-      };
-      const libraryPrompts = {
-        generic: "Make this website feel more specific to me. Use the facts, language, interests, projects, and visual direction already provided. Remove generic portfolio wording and decorative elements that could belong to anyone. Keep it distinctive but professional.",
-        project: "Add the following project to my website. Present the problem or goal, my contribution, the process or method, and the outcome. Do not invent metrics. Match the existing visual system and make the project easy to scan: [PASTE PROJECT DETAILS].",
-        mobile: repairPrompts.mobile,
-        accessibility: "Improve accessibility across the website. Check colour contrast, keyboard navigation, visible focus states, semantic heading order, descriptive link text, form labels, image alternative text, and reduced-motion support. Preserve the visual identity.",
-        theme: "Keep all current facts and sections, but redesign the full visual experience using this new direction: [DESCRIBE OR PASTE A THEME]. Change layout, typography, colour, imagery, and interaction while keeping the website professional and accessible.",
-        experience: "Update my experience section using the information below. Keep the newest and most relevant work prominent, write concise contribution-focused descriptions, and do not invent results: [PASTE NEW EXPERIENCE].",
-        seo: "Improve basic search and link-sharing visibility. Add a descriptive page title using my name and field, a concise meta description, Open Graph information, semantic headings, descriptive image text, and clear professional links. Do not use keyword stuffing.",
-        accuracy: repairPrompts.facts
-      };
-      const examples = {
-        musab: { name: "Musab Fatih Aras", currentRole: "Philosophy graduate", targetRole: "Research and academic opportunities", goal: "Research opportunity", personalDetail: "Chess", theme: "classic" },
-        mirza: { name: "Mirza Aydemir", currentRole: "Financial and Business Economics graduate", targetRole: "Equity Research Analyst", goal: "Full-time job", personalDetail: "Evidence-based financial analysis", theme: "future" },
-        psych: { name: "Psychology Student", currentRole: "Fourth-year psychology student", targetRole: "Research Assistant", goal: "Internship", personalDetail: "Community work and human behaviour", theme: "retro" }
-      };
-
-      const defaultState = {
-        theme: "minimal",
-        mode: "quick",
-        checks: {},
-        reviews: {},
-        flags: { prompt: false, build: false, publish: false },
-        form: { name: "", currentRole: "", targetRole: "", goal: "Full-time job", personalDetail: "" }
-      };
-      let state = JSON.parse(JSON.stringify(defaultState));
-      const bar = document.getElementById("progressBar");
-      const toast = document.getElementById("toast");
-      const quickPrompt = document.getElementById("quickPrompt");
-      const personalPrompt = document.getElementById("personalPrompt");
-      const dialog = document.getElementById("themeDialog");
-      let dialogTheme = "minimal";
-
-      try {
-        const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
-        state = {
-          ...defaultState,
-          ...saved,
-          checks: { ...defaultState.checks, ...(saved.checks || {}) },
-          reviews: { ...defaultState.reviews, ...(saved.reviews || {}) },
-          flags: { ...defaultState.flags, ...(saved.flags || {}) },
-          form: { ...defaultState.form, ...(saved.form || {}) }
-        };
-      } catch (_) {}
-
-      function notify(message) {
-        toast.textContent = message;
-        toast.classList.add("show");
-        setTimeout(() => toast.classList.remove("show"), 1800);
-      }
-
-      function save() {
-        try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (_) {}
-      }
-
-      async function copyText(text) {
-        if (!text) return;
-        try {
-          if (navigator.clipboard && window.isSecureContext) {
-            await navigator.clipboard.writeText(text);
-          } else {
-            const helper = document.createElement("textarea");
-            helper.value = text;
-            helper.setAttribute("readonly", "");
-            helper.style.position = "fixed";
-            helper.style.opacity = "0";
-            document.body.appendChild(helper);
-            helper.select();
-            document.execCommand("copy");
-            helper.remove();
-          }
-          notify("Copied to clipboard");
-        } catch (_) {
-          notify("Select the text and copy it manually");
-        }
-      }
-
-      function buildPrompt(personalized) {
-        const f = state.form;
-        const identity = personalized && f.name ? f.name : "a student, recent graduate, or job seeker";
-        const roleLine = personalized && f.currentRole ? f.currentRole : "[CURRENT ROLE, PROGRAM, OR FIELD]";
-        const targetLine = personalized && f.targetRole ? f.targetRole : "[TARGET ROLE OR OPPORTUNITY]";
-        const goalLine = personalized ? f.goal : "[JOB, INTERNSHIP, RESEARCH, FREELANCE, OR COLLABORATION]";
-        const personalLine = personalized && f.personalDetail ? f.personalDetail : "[OPTIONAL PERSONAL INTEREST]";
-        return [
-          "Create a polished, responsive one-page personal website for " + identity + ".",
-          "",
-          "PURPOSE",
-          "The website should increase professional visibility and help recruiters, hiring managers, clients, or collaborators quickly understand the person’s background, strengths, work, and direction.",
-          "",
-          "PROFILE",
-          "- Current role or program: " + roleLine,
-          "- Target role or opportunity: " + targetLine,
-          "- Primary goal: " + goalLine,
-          "- Optional personal detail: " + personalLine,
-          "",
-          "SOURCE OF TRUTH",
-          "I will attach or paste my resume after this prompt. Use it as the factual source of truth. Do not invent achievements, employers, dates, skills, projects, publications, awards, clients, testimonials, qualifications, or statistics. If information is missing, omit it instead of creating placeholder content. Do not publish a home address, student number, references, or private information.",
-          "",
-          "CONTENT STRATEGY",
-          "Help a visitor understand: who I am, what field I work or study in, what opportunities I want, what strengths I offer, what I have worked on, and how to contact me.",
-          "Use clear, natural language. Avoid phrases such as passionate individual, visionary, results-driven, dynamic professional, and innovative thinker.",
-          "",
-          "PAGE STRUCTURE",
-          "1. Navigation",
-          "2. Hero with name, current identity, short positioning statement, View My Work button, and Contact or Resume button",
-          "3. Concise About section",
-          "4. Three to six relevant skills, research interests, focus areas, or services",
-          "5. Two to four strong examples of projects, research, writing, designs, case studies, coursework, volunteering, or other work",
-          "6. Experience timeline",
-          "7. Education",
-          "8. Awards, certifications, leadership, or involvement only when provided",
-          "9. One optional personal detail",
-          "10. Clear contact section",
-          "",
-          "Adapt section labels to the field. Examples: technology can use Projects and Technologies; humanities can use Research and Writing; business can use Experience and Case Studies; design can use Selected Work; science can use Research and Field Experience. Do not force every person into the same structure.",
-          "",
-          "QUALITY REQUIREMENTS",
-          "- Responsive on mobile, tablet, and desktop",
-          "- Accessible colour contrast, keyboard navigation, focus states, semantic headings, and image alternative text",
-          "- Strong typography, short paragraphs, and clear hierarchy",
-          "- Functional navigation, email, resume, and professional links",
-          "- Basic page title, meta description, and social-sharing metadata",
-          "- No skill percentage bars, fake testimonials, fake photography, excessive gradients, heavy shadows, or unnecessary animations",
-          "- Use an uploaded real portrait if available; otherwise create a typography-led hero and never generate a fake portrait",
-          "",
-          themePrompts[state.theme],
-          "",
-          "Produce the complete website and keep every factual statement consistent with the resume."
-        ].join("\n");
-      }
-
-      function updatePrompts() {
-        quickPrompt.value = buildPrompt(false);
-        personalPrompt.value = buildPrompt(true);
-        const name = themeNames[state.theme] + " selected";
-        document.getElementById("quickThemePill").textContent = name;
-        document.getElementById("personalThemePill").textContent = name;
-      }
-
-      function refreshProgress() {
-        const completed = [
-          Boolean(state.checks.resume),
-          Boolean(state.theme),
-          Boolean(state.flags.prompt),
-          Boolean(state.flags.build),
-          Object.values(state.reviews).filter(Boolean).length >= 4,
-          Boolean(state.flags.publish)
-        ].filter(Boolean).length;
-        bar.style.width = (completed / 6 * 100) + "%";
-      }
-
-      function refreshTheme() {
-        document.querySelectorAll("[data-theme-card]").forEach(card => {
-          card.classList.toggle("selected", card.dataset.themeCard === state.theme);
-        });
-        updatePrompts();
-      }
-
-      function setMode(mode) {
-        state.mode = mode;
-        document.querySelectorAll(".mode-button").forEach(button => {
-          const active = button.dataset.mode === mode;
-          button.classList.toggle("active", active);
-          button.setAttribute("aria-selected", String(active));
-        });
-        document.getElementById("quickPanel").classList.toggle("active", mode === "quick");
-        document.getElementById("personalPanel").classList.toggle("active", mode === "personal");
-        save();
-      }
-
-      function fillForm() {
-        document.getElementById("personName").value = state.form.name;
-        document.getElementById("currentRole").value = state.form.currentRole;
-        document.getElementById("targetRole").value = state.form.targetRole;
-        document.getElementById("goal").value = state.form.goal;
-        document.getElementById("personalDetail").value = state.form.personalDetail;
-      }
-
-      async function downloadGuide() {
-        if (location.protocol === "file:") {
-          notify("This guide is already available offline");
-          return;
-        }
-        try {
-          const response = await fetch(location.href.split("#")[0]);
-          const html = await response.text();
-          const blob = new Blob([html], { type: "text/html" });
-          const url = URL.createObjectURL(blob);
-          const link = document.createElement("a");
-          link.href = url;
-          link.download = "personal-website-workshop-guide.html";
-          document.body.appendChild(link);
-          link.click();
-          link.remove();
-          URL.revokeObjectURL(url);
-          notify("Offline guide downloaded");
-        } catch (_) {
-          notify("Use your browser’s Save Page option");
-        }
-      }
-
-      document.querySelectorAll("[data-progress]").forEach(input => {
-        input.checked = Boolean(state.checks[input.dataset.progress]);
-        input.addEventListener("change", () => {
-          state.checks[input.dataset.progress] = input.checked;
-          save();
-          refreshProgress();
-        });
-      });
-
-      document.querySelectorAll("[data-review]").forEach(input => {
-        input.checked = Boolean(state.reviews[input.dataset.review]);
-        input.addEventListener("change", () => {
-          state.reviews[input.dataset.review] = input.checked;
-          save();
-          refreshProgress();
-        });
-      });
-
-      document.querySelectorAll(".choose-theme").forEach(button => {
-        button.addEventListener("click", () => {
-          state.theme = button.dataset.theme;
-          save();
-          refreshTheme();
-          refreshProgress();
-          notify(themeNames[state.theme] + " selected");
-          document.getElementById("prompt").scrollIntoView({ behavior: "smooth", block: "start" });
-        });
-      });
-
-      document.querySelectorAll(".theme-details").forEach(button => {
-        button.addEventListener("click", () => {
-          dialogTheme = button.dataset.theme;
-          document.getElementById("dialogTitle").textContent = themeNames[dialogTheme];
-          document.getElementById("dialogDescription").textContent = themeDescriptions[dialogTheme];
-          document.getElementById("dialogPrompt").textContent = themePrompts[dialogTheme];
-          dialog.showModal();
-        });
-      });
-
-      document.querySelectorAll(".mode-button").forEach(button => button.addEventListener("click", () => setMode(button.dataset.mode)));
-
-      ["personName", "currentRole", "targetRole", "goal", "personalDetail"].forEach(id => {
-        document.getElementById(id).addEventListener("input", event => {
-          const map = { personName: "name", currentRole: "currentRole", targetRole: "targetRole", goal: "goal", personalDetail: "personalDetail" };
-          state.form[map[id]] = event.target.value;
-          save();
-          updatePrompts();
-        });
-      });
-
-      document.querySelectorAll(".load-example").forEach(button => button.addEventListener("click", () => {
-        const example = examples[button.dataset.example];
-        state.form = { name: example.name, currentRole: example.currentRole, targetRole: example.targetRole, goal: example.goal, personalDetail: example.personalDetail };
-        state.theme = example.theme;
-        fillForm();
-        save();
-        refreshTheme();
-        refreshProgress();
-        notify("Example loaded");
-      }));
-
-      document.getElementById("generatePrompt").addEventListener("click", () => {
-        state.flags.prompt = true;
-        updatePrompts();
-        save();
-        refreshProgress();
-        notify("Personalized prompt generated");
-      });
-
-      document.querySelectorAll(".copy-main-prompt").forEach(button => button.addEventListener("click", () => {
-        state.flags.prompt = true;
-        save();
-        refreshProgress();
-        copyText(document.getElementById(button.dataset.target).value);
-      }));
-
-      document.querySelectorAll(".copy-repair").forEach(button => button.addEventListener("click", event => {
-        event.preventDefault();
-        copyText(repairPrompts[button.dataset.repair]);
-      }));
-      document.querySelectorAll(".copy-library").forEach(button => button.addEventListener("click", () => copyText(libraryPrompts[button.dataset.library])));
-
-      document.getElementById("openV0").addEventListener("click", () => {
-        state.flags.build = true;
-        save();
-        refreshProgress();
-      });
-
-      const publishedCheck = document.getElementById("publishedCheck");
-      publishedCheck.checked = Boolean(state.flags.publish);
-      publishedCheck.addEventListener("change", () => {
-        state.flags.publish = publishedCheck.checked;
-        save();
-        refreshProgress();
-        if (publishedCheck.checked) notify("Website marked as published");
-      });
-
-      document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
-      dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
-      document.getElementById("copyDialogPrompt").addEventListener("click", () => copyText(themePrompts[dialogTheme]));
-
-      document.getElementById("downloadGuide").addEventListener("click", downloadGuide);
-      document.getElementById("downloadGuideBottom").addEventListener("click", downloadGuide);
-      document.getElementById("resetGuide").addEventListener("click", () => {
-        if (!confirm("Reset your selections and progress in this guide?")) return;
-        state = JSON.parse(JSON.stringify(defaultState));
-        save();
-        location.reload();
-      });
-
-      fillForm();
-      setMode(state.mode);
-      refreshTheme();
-      refreshProgress();
-    })();
-  </script>
+  </footer>
 </body>
 </html>
