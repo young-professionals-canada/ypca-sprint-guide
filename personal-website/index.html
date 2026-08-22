@@ -205,6 +205,20 @@
     .check-item input { width: 19px; height: 19px; margin-top: 2px; accent-color: var(--coral); }
     .check-item span { color: var(--navy); font-weight: 760; }
 
+    .basics-card {
+      margin-top: 28px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 20px;
+      border: 1px solid #d8d1e7;
+      border-radius: 12px;
+      background: var(--soft-purple);
+    }
+    .basics-card h3 { margin: 0 0 5px; color: var(--navy); font-size: 1.18rem; }
+    .basics-card p { margin: 0; color: var(--muted); }
+
     .theme-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px; }
     .theme-card { overflow: hidden; border: 2px solid transparent; border-radius: 12px; background: #fff; transition: border-color .18s ease, transform .18s ease; }
     .theme-card:hover { transform: translateY(-3px); }
@@ -345,6 +359,40 @@
     .dialog-close { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--navy); cursor: pointer; font-size: 1.2rem; }
     .dialog-copy { margin: 18px 0; color: var(--muted); }
     .dialog-prompt { white-space: pre-wrap; padding: 16px; border-radius: 9px; background: #f5f4f7; color: #303a57; font-family: ui-monospace, monospace; font-size: .78rem; }
+    .diagrams-dialog { width: min(980px, calc(100% - 28px)); max-height: 92vh; }
+    .carousel-shell { position: relative; margin-top: 20px; }
+    .carousel-stage { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: #f7f5f3; }
+    .carousel-image-link { display: block; }
+    .carousel-image { width: 100%; aspect-ratio: 16 / 9; display: block; object-fit: contain; }
+    .carousel-arrow {
+      position: absolute;
+      top: 50%;
+      z-index: 2;
+      width: 52px;
+      height: 52px;
+      display: grid;
+      place-items: center;
+      transform: translateY(-50%);
+      border: 2px solid rgba(255,255,255,.9);
+      border-radius: 50%;
+      background: rgba(36,54,120,.94);
+      box-shadow: 0 6px 20px rgba(18,27,62,.22);
+      color: #fff;
+      cursor: pointer;
+      font-size: 1.65rem;
+      line-height: 1;
+      transition: transform .16s ease, background .16s ease;
+    }
+    .carousel-arrow:hover { transform: translateY(-50%) scale(1.05); background: var(--coral); }
+    .carousel-arrow.previous { left: 16px; }
+    .carousel-arrow.next { right: 16px; }
+    .carousel-footer { padding: 17px 2px 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 18px; }
+    .carousel-counter { margin: 0 0 5px; color: var(--coral); font-size: .72rem; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .carousel-footer h3 { margin: 0; color: var(--navy); font-size: 1.25rem; }
+    .carousel-footer p:last-child { margin: 4px 0 0; color: var(--muted); }
+    .carousel-dots { margin-top: 17px; display: flex; justify-content: center; align-items: center; gap: 8px; }
+    .carousel-dot { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: #cbc7d8; cursor: pointer; transition: width .16s ease, background .16s ease; }
+    .carousel-dot.active { width: 27px; background: var(--coral); }
     .domain-dialog { width: min(820px, calc(100% - 28px)); }
     .domain-intro { margin: 18px 0 22px; color: var(--muted); font-size: 1rem; }
     .domain-steps { display: grid; gap: 12px; }
@@ -448,6 +496,12 @@
       .review-item .button { grid-column: 2; justify-self: start; }
       .theme-preview { height: 210px; }
       .dialog-body { padding: 22px 18px; }
+      .basics-card { grid-template-columns: 1fr; }
+      .basics-card .button { justify-self: start; }
+      .carousel-arrow { width: 42px; height: 42px; font-size: 1.35rem; }
+      .carousel-arrow.previous { left: 9px; }
+      .carousel-arrow.next { right: 9px; }
+      .carousel-footer { grid-template-columns: 1fr; align-items: start; }
       .domain-step { padding: 16px 15px 16px 60px; }
       .domain-step-number { top: 15px; left: 15px; }
       .domain-flow { grid-template-columns: 1fr; }
@@ -547,6 +601,13 @@
               <h2>Prepare your resume</h2>
               <p class="step-intro">Your resume is the source of truth. You will give it directly to the AI website builder rather than retyping everything here.</p>
             </div>
+          </div>
+          <div class="basics-card">
+            <div>
+              <h3>New to websites? Start with the visual guide</h3>
+              <p>Explore eight quick diagrams about webpage basics, prompts, drafts, responsive layouts, domains, and publishing.</p>
+            </div>
+            <button class="button navy" id="openDiagrams" type="button" aria-haspopup="dialog" aria-controls="diagramsDialog">Open visual gallery</button>
           </div>
           <div class="check-grid">
             <label class="check-item"><input type="checkbox" data-progress="resume"><span>Resume file is ready</span></label>
@@ -807,6 +868,36 @@
     </div>
   </dialog>
 
+  <dialog class="diagrams-dialog" id="diagramsDialog" aria-labelledby="diagramsDialogTitle">
+    <div class="dialog-body">
+      <div class="dialog-top">
+        <div>
+          <h2 id="diagramsDialogTitle">Website basics: visual gallery</h2>
+          <p class="dialog-copy">Use the arrows or your keyboard’s left and right keys to move through the diagrams.</p>
+        </div>
+        <button class="dialog-close" id="closeDiagramsDialog" type="button" aria-label="Close visual gallery">×</button>
+      </div>
+      <div class="carousel-shell">
+        <div class="carousel-stage">
+          <a class="carousel-image-link" id="diagramFullSizeImage" href="assets/technical-diagrams/01-webpage-parts-clear.svg" target="_blank" rel="noopener">
+            <img class="carousel-image" id="diagramImage" src="assets/technical-diagrams/01-webpage-parts-clear.svg" alt="HTML provides content and structure, CSS provides visual style, JavaScript provides actions and behaviour, and a browser combines them into a webpage.">
+          </a>
+          <button class="carousel-arrow previous" id="previousDiagram" type="button" aria-label="Previous diagram">‹</button>
+          <button class="carousel-arrow next" id="nextDiagram" type="button" aria-label="Next diagram">›</button>
+        </div>
+        <div class="carousel-footer">
+          <div id="diagramCaption" aria-live="polite">
+            <p class="carousel-counter" id="diagramCounter">Diagram 1 of 8</p>
+            <h3 id="diagramTitle">What makes a webpage?</h3>
+            <p id="diagramDescription">See how HTML, CSS, and JavaScript combine in the browser.</p>
+          </div>
+          <a class="button ghost small" id="diagramFullSizeLink" href="assets/technical-diagrams/01-webpage-parts-clear.svg" target="_blank" rel="noopener">Open full size ↗</a>
+        </div>
+        <div class="carousel-dots" id="diagramDots" aria-label="Choose a diagram"></div>
+      </div>
+    </div>
+  </dialog>
+
   <dialog class="domain-dialog" id="domainDialog" aria-labelledby="domainDialogTitle">
     <div class="dialog-body">
       <div class="dialog-top"><h2 id="domainDialogTitle">How to get a domain with Namecheap</h2><button class="dialog-close" id="closeDomainDialog" type="button" aria-label="Close domain guide">×</button></div>
@@ -953,6 +1044,16 @@
         mirza: { name: "Mirza Aydemir", currentRole: "Financial and Business Economics graduate", targetRole: "Equity Research Analyst", goal: "Full-time job", personalDetail: "Evidence-based financial analysis", theme: "future" },
         psych: { name: "Psychology Student", currentRole: "Fourth-year psychology student", targetRole: "Research Assistant", goal: "Internship", personalDetail: "Community work and human behaviour", theme: "retro" }
       };
+      const diagrams = [
+        { src: "assets/technical-diagrams/01-webpage-parts-clear.svg", alt: "HTML provides content and structure, CSS provides visual style, JavaScript provides actions and behaviour, and a browser combines them into a webpage.", title: "What makes a webpage?", description: "See how HTML, CSS, and JavaScript combine in the browser." },
+        { src: "assets/technical-diagrams/02-resume-to-website-clear.svg", alt: "A four-step flow from verified resume facts, to a prompt, to a private first draft, to a reviewed and published public website.", title: "From resume to website", description: "Understand the full workshop journey." },
+        { src: "assets/technical-diagrams/03-website-prompt-v5.svg", alt: "A website prompt combines a goal, verified facts, page sections, and style and accessibility rules.", title: "What belongs in a prompt", description: "Combine your goal, facts, sections, and design rules." },
+        { src: "assets/technical-diagrams/04-review-loop-v5.svg", alt: "A review loop moves from draft to review to one specific change and back to the draft.", title: "Improve one change at a time", description: "Review each draft and request one clear revision." },
+        { src: "assets/technical-diagrams/05-responsive-layout-v5.svg", alt: "The same website content rearranges from a desktop grid to tablet stacks and a single phone column.", title: "Review every screen size", description: "The same content should work on desktop, tablet, and phone." },
+        { src: "assets/technical-diagrams/06-domain-hosting-website-v5.svg", alt: "A domain name points to a hosting server, which stores and serves the website.", title: "Domain, hosting, and website", description: "Learn the difference between the name, server, and pages." },
+        { src: "assets/technical-diagrams/07-domain-phone-contact-v5.svg", alt: "A domain name, DNS, and IP address are compared to a saved contact name, contacts app, and phone number.", title: "A domain is like a contact name", description: "DNS looks up the server address for a memorable name." },
+        { src: "assets/technical-diagrams/08-private-publish-public-v5.svg", alt: "Private editing and preview lead to publishing a public website, which can be edited and published again.", title: "Preview first, then publish", description: "Keep drafts private until the site is ready to share." }
+      ];
 
       const defaultState = {
         theme: "minimal",
@@ -968,8 +1069,10 @@
       const quickPrompt = document.getElementById("quickPrompt");
       const personalPrompt = document.getElementById("personalPrompt");
       const dialog = document.getElementById("themeDialog");
+      const diagramsDialog = document.getElementById("diagramsDialog");
       const domainDialog = document.getElementById("domainDialog");
       let dialogTheme = "minimal";
+      let diagramIndex = 0;
 
       try {
         const saved = JSON.parse(localStorage.getItem(storageKey) || "{}");
@@ -991,6 +1094,27 @@
 
       function save() {
         try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch (_) {}
+      }
+
+      function renderDiagram() {
+        const diagram = diagrams[diagramIndex];
+        document.getElementById("diagramImage").src = diagram.src;
+        document.getElementById("diagramImage").alt = diagram.alt;
+        document.getElementById("diagramTitle").textContent = diagram.title;
+        document.getElementById("diagramDescription").textContent = diagram.description;
+        document.getElementById("diagramCounter").textContent = "Diagram " + (diagramIndex + 1) + " of " + diagrams.length;
+        document.getElementById("diagramFullSizeImage").href = diagram.src;
+        document.getElementById("diagramFullSizeLink").href = diagram.src;
+        document.querySelectorAll(".carousel-dot").forEach((dot, index) => {
+          const active = index === diagramIndex;
+          dot.classList.toggle("active", active);
+          dot.setAttribute("aria-current", active ? "true" : "false");
+        });
+      }
+
+      function moveDiagram(direction) {
+        diagramIndex = (diagramIndex + direction + diagrams.length) % diagrams.length;
+        renderDiagram();
       }
 
       async function copyText(text) {
@@ -1242,6 +1366,27 @@
       document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
       dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
       document.getElementById("copyDialogPrompt").addEventListener("click", () => copyText(themePrompts[dialogTheme]));
+      diagrams.forEach((diagram, index) => {
+        const dot = document.createElement("button");
+        dot.className = "carousel-dot";
+        dot.type = "button";
+        dot.setAttribute("aria-label", "Go to diagram " + (index + 1) + ": " + diagram.title);
+        dot.addEventListener("click", () => { diagramIndex = index; renderDiagram(); });
+        document.getElementById("diagramDots").appendChild(dot);
+      });
+      document.getElementById("openDiagrams").addEventListener("click", () => {
+        diagramIndex = 0;
+        renderDiagram();
+        diagramsDialog.showModal();
+      });
+      document.getElementById("previousDiagram").addEventListener("click", () => moveDiagram(-1));
+      document.getElementById("nextDiagram").addEventListener("click", () => moveDiagram(1));
+      document.getElementById("closeDiagramsDialog").addEventListener("click", () => diagramsDialog.close());
+      diagramsDialog.addEventListener("keydown", event => {
+        if (event.key === "ArrowLeft") { event.preventDefault(); moveDiagram(-1); }
+        if (event.key === "ArrowRight") { event.preventDefault(); moveDiagram(1); }
+      });
+      diagramsDialog.addEventListener("click", event => { if (event.target === diagramsDialog) diagramsDialog.close(); });
       document.getElementById("openDomainGuide").addEventListener("click", () => domainDialog.showModal());
       document.getElementById("closeDomainDialog").addEventListener("click", () => domainDialog.close());
       domainDialog.addEventListener("click", event => { if (event.target === domainDialog) domainDialog.close(); });

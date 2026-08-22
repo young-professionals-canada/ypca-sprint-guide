@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">How your resume becomes a website</title>
+  <desc id="desc">A four-step flow. Your resume supplies verified facts. Your prompt tells the AI what to build. The AI creates a private first draft. You review it, publish it, and share the public website.</desc>
+
+  <rect width="1200" height="675" fill="#F7F5F2"/>
+  <rect x="1030" width="170" height="170" fill="#F1EDF8"/>
+  <rect y="580" width="105" height="95" fill="#FCEBED"/>
+
+  <rect x="30" y="30" width="1140" height="615" rx="28" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="1.5"/>
+  <path d="M58 30H1142A28 28 0 0 1 1170 58V46H30V58A28 28 0 0 1 58 30Z" fill="#F06473"/>
+
+  <text x="60" y="73" fill="#F06473" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2.3">WEBSITE BASICS · 02</text>
+  <text x="60" y="121" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800" letter-spacing="-0.7">How your resume becomes a website</text>
+  <text x="60" y="160" fill="#5E6682" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600">AI creates the draft. You decide when it goes public.</text>
+
+  <!-- Step 1: Resume -->
+  <rect x="50" y="220" width="230" height="345" rx="24" fill="#FCEBED" stroke="#EBC9CF" stroke-width="2"/>
+  <circle cx="80" cy="250" r="18" fill="#F06473"/>
+  <text x="80" y="256" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800">1</text>
+  <path d="M128 278H180L202 300V365H128Z" fill="#FFFFFF" stroke="#F06473" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M180 278V300H202" fill="none" stroke="#F06473" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M145 322H184M145 340H184M145 358H174" fill="none" stroke="#5F6EA3" stroke-width="6" stroke-linecap="round"/>
+  <text x="165" y="410" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800">RESUME</text>
+  <text x="165" y="452" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">Your verified facts</text>
+  <text x="165" y="488" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Experience · Skills</text>
+  <text x="165" y="513" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Education</text>
+
+  <!-- Arrow 1 -->
+  <path d="M292 390H324" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round"/>
+  <path d="M317 379L329 390L317 401" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Step 2: Prompt -->
+  <rect x="340" y="220" width="230" height="345" rx="24" fill="#F1EDF8" stroke="#D7CCE8" stroke-width="2"/>
+  <circle cx="370" cy="250" r="18" fill="#594477"/>
+  <text x="370" y="256" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800">2</text>
+  <rect x="400" y="278" width="110" height="88" rx="14" fill="#FFFFFF" stroke="#594477" stroke-width="4"/>
+  <circle cx="420" cy="301" r="6" fill="#F06473"/>
+  <circle cx="420" cy="322" r="6" fill="#238C8A"/>
+  <circle cx="420" cy="343" r="6" fill="#594477"/>
+  <path d="M438 301H485M438 322H485M438 343H485" fill="none" stroke="#243678" stroke-width="6" stroke-linecap="round"/>
+  <text x="455" y="410" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="800">PROMPT</text>
+  <text x="455" y="445" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">Tell the AI</text>
+  <text x="455" y="470" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">what to build</text>
+  <text x="455" y="510" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Sections · Style · Goal</text>
+
+  <!-- Arrow 2 -->
+  <path d="M582 390H614" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round"/>
+  <path d="M607 379L619 390L607 401" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Step 3: First draft -->
+  <rect x="630" y="220" width="230" height="345" rx="24" fill="#E4F4F4" stroke="#B7DDDC" stroke-width="2"/>
+  <circle cx="660" cy="250" r="18" fill="#238C8A"/>
+  <text x="660" y="256" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800">3</text>
+  <rect x="680" y="278" width="130" height="88" rx="13" fill="#FFFFFF" stroke="#238C8A" stroke-width="4"/>
+  <path d="M680 303H810" fill="none" stroke="#238C8A" stroke-width="4"/>
+  <circle cx="695" cy="291" r="4" fill="#F06473"/>
+  <circle cx="708" cy="291" r="4" fill="#F2C45B"/>
+  <rect x="699" y="317" width="50" height="34" rx="8" fill="#243678"/>
+  <text x="724" y="340" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800">AI</text>
+  <path d="M762 323H794M762 340H788" fill="none" stroke="#A8B3D0" stroke-width="5" stroke-linecap="round"/>
+  <text x="745" y="410" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">FIRST DRAFT</text>
+  <text x="745" y="445" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">AI builds the</text>
+  <text x="745" y="470" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">first version</text>
+  <text x="745" y="510" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Private until you publish</text>
+
+  <!-- Arrow 3 -->
+  <path d="M872 390H904" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round"/>
+  <path d="M897 379L909 390L897 401" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Step 4: Public website -->
+  <rect x="920" y="220" width="230" height="345" rx="24" fill="#243678"/>
+  <circle cx="950" cy="250" r="18" fill="#F06473"/>
+  <text x="950" y="256" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="17" font-weight="800">4</text>
+  <circle cx="1035" cy="322" r="46" fill="#FFFFFF"/>
+  <ellipse cx="1035" cy="322" rx="19" ry="43" fill="none" stroke="#243678" stroke-width="3.5"/>
+  <path d="M992 322H1078M1001 301C1022 311 1048 311 1069 301M1001 343C1022 333 1048 333 1069 343" fill="none" stroke="#243678" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M1050 292L1061 303L1081 281" fill="none" stroke="#F06473" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1035" y="410" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="800">PUBLIC WEBSITE</text>
+  <text x="1035" y="445" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">You review,</text>
+  <text x="1035" y="470" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">publish and share</text>
+  <text x="1035" y="510" text-anchor="middle" fill="#E7ECFA" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">People can visit it</text>
+</svg>
