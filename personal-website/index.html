@@ -345,6 +345,66 @@
     .dialog-close { width: 38px; height: 38px; border: 1px solid var(--line); border-radius: 8px; background: #fff; color: var(--navy); cursor: pointer; font-size: 1.2rem; }
     .dialog-copy { margin: 18px 0; color: var(--muted); }
     .dialog-prompt { white-space: pre-wrap; padding: 16px; border-radius: 9px; background: #f5f4f7; color: #303a57; font-family: ui-monospace, monospace; font-size: .78rem; }
+    .domain-dialog { width: min(820px, calc(100% - 28px)); }
+    .domain-intro { margin: 18px 0 22px; color: var(--muted); font-size: 1rem; }
+    .domain-steps { display: grid; gap: 12px; }
+    .domain-step {
+      position: relative;
+      min-height: 74px;
+      padding: 17px 18px 17px 66px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: #fff;
+    }
+    .domain-step:nth-child(odd) { background: var(--soft-teal); }
+    .domain-step-number {
+      position: absolute;
+      top: 17px;
+      left: 17px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border-radius: 9px;
+      background: var(--navy);
+      color: #fff;
+      font-size: .72rem;
+      font-weight: 900;
+    }
+    .domain-step h3 { margin: 0 0 7px; color: var(--navy); font-size: 1.08rem; }
+    .domain-step p { margin: 0; color: var(--muted); }
+    .domain-step p + p { margin-top: 8px; }
+    .domain-step ol { margin: 9px 0 0; padding-left: 20px; color: var(--muted); }
+    .domain-step a { color: var(--navy); font-weight: 850; }
+    .domain-example {
+      margin: 11px 0 0;
+      padding: 12px 14px;
+      overflow-x: auto;
+      border-radius: 8px;
+      background: #17204a;
+      color: #fff;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .8rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+    .domain-note { margin-top: 10px; padding: 11px 13px; border-left: 4px solid var(--coral); border-radius: 7px; background: var(--blush); color: var(--purple); }
+    .domain-flow {
+      margin-top: 18px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 10px;
+      border-radius: 11px;
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+    }
+    .domain-flow strong { font-size: .88rem; }
+    .domain-flow span { color: #ff9ba4; font-size: 1.2rem; font-weight: 900; }
+    .domain-summary { margin-top: 12px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .domain-summary div { padding: 13px 15px; border-radius: 9px; background: var(--blush); color: var(--navy); }
 
     .toast { position: fixed; right: 18px; bottom: 18px; z-index: 50; transform: translateY(130%); padding: 12px 17px; border-radius: 9px; background: var(--navy); color: #fff; font-weight: 800; transition: transform .22s ease; }
     .toast.show { transform: translateY(0); }
@@ -387,6 +447,12 @@
       .review-item { grid-template-columns: 25px 1fr; }
       .review-item .button { grid-column: 2; justify-self: start; }
       .theme-preview { height: 210px; }
+      .dialog-body { padding: 22px 18px; }
+      .domain-step { padding: 16px 15px 16px 60px; }
+      .domain-step-number { top: 15px; left: 15px; }
+      .domain-flow { grid-template-columns: 1fr; }
+      .domain-flow span { transform: rotate(90deg); }
+      .domain-summary { grid-template-columns: 1fr; }
     }
     @media (max-width: 360px) {
       .topbar-inner { width: calc(100% - 20px); }
@@ -692,7 +758,7 @@
                 <li><span class="numbered-copy">Copy the DNS records Vercel displays into your domain provider.</span></li>
                 <li><span class="numbered-copy">Wait for Vercel to verify the configuration.</span></li>
               </ol>
-              <div class="build-actions"><a class="button ghost small" href="https://vercel.com/docs/domains/working-with-domains/add-a-domain" target="_blank" rel="noopener">Official domain guide ↗</a></div>
+              <div class="build-actions"><button class="button navy small" id="openDomainGuide" type="button">How to get a domain</button><a class="button ghost small" href="https://vercel.com/docs/domains/working-with-domains/add-a-domain" target="_blank" rel="noopener">Official domain guide ↗</a></div>
             </article>
           </div>
           <div class="section-note"><strong>Your domain can stay with its current provider.</strong> You normally connect it using the DNS values shown by Vercel. Domain registration itself may cost money.</div>
@@ -738,6 +804,70 @@
       <p class="dialog-copy" id="dialogDescription"></p>
       <div class="dialog-prompt" id="dialogPrompt"></div>
       <button class="button" id="copyDialogPrompt" type="button" style="margin-top:16px">Copy theme prompt</button>
+    </div>
+  </dialog>
+
+  <dialog class="domain-dialog" id="domainDialog" aria-labelledby="domainDialogTitle">
+    <div class="dialog-body">
+      <div class="dialog-top"><h2 id="domainDialogTitle">How to get a domain with Namecheap</h2><button class="dialog-close" id="closeDomainDialog" type="button" aria-label="Close domain guide">×</button></div>
+      <p class="domain-intro">Buy the domain from Namecheap, keep your contact information private, and then connect the domain to the platform hosting your personal website.</p>
+
+      <div class="domain-steps">
+        <section class="domain-step">
+          <span class="domain-step-number">01</span>
+          <h3>Search for your domain</h3>
+          <p>Open <a href="https://www.namecheap.com/" target="_blank" rel="noopener">namecheap.com ↗</a> and search for the address you want.</p>
+          <pre class="domain-example"><code>musabaras.com</code></pre>
+        </section>
+
+        <section class="domain-step">
+          <span class="domain-step-number">02</span>
+          <h3>Purchase the domain</h3>
+          <p>If it is available:</p>
+          <ol><li>Add it to your cart.</li><li>Continue to checkout.</li><li>Create or sign in to your Namecheap account.</li><li>Complete the payment.</li></ol>
+          <div class="domain-note"><strong>Check the renewal price.</strong> The first-year promotional price may be lower than the annual renewal cost.</div>
+        </section>
+
+        <section class="domain-step">
+          <span class="domain-step-number">03</span>
+          <h3>Keep Domain Privacy enabled</h3>
+          <p>If Domain Privacy is offered, keep it turned on. It helps prevent your personal contact information from appearing publicly in domain-registration records.</p>
+        </section>
+
+        <section class="domain-step">
+          <span class="domain-step-number">04</span>
+          <h3>Verify your email address</h3>
+          <p>Namecheap may send a verification email after purchase. Open it and select the verification link so the domain remains active.</p>
+        </section>
+
+        <section class="domain-step">
+          <span class="domain-step-number">05</span>
+          <h3>Add the DNS records</h3>
+          <p>In Namecheap, open <strong>Domain List → Manage → Advanced DNS</strong>. Your website platform will provide the DNS values to add.</p>
+          <pre class="domain-example"><code>Type: CNAME<br>Host: www<br>Value: provided by your website platform</code></pre>
+          <p>Copy the record type, host, and value exactly as your platform displays them.</p>
+        </section>
+
+        <section class="domain-step">
+          <span class="domain-step-number">06</span>
+          <h3>Add the domain to your website platform</h3>
+          <p>Return to Vercel, Netlify, Replit, or your other hosting platform. Find <strong>Custom Domain</strong> or <strong>Connect Domain</strong>, then enter:</p>
+          <pre class="domain-example"><code>musabaras.com</code></pre>
+        </section>
+
+        <section class="domain-step">
+          <span class="domain-step-number">07</span>
+          <h3>Test the finished address</h3>
+          <p>After the DNS records are verified, open the secure address and test the website on desktop and mobile.</p>
+          <pre class="domain-example"><code>https://musabaras.com</code></pre>
+          <div class="domain-note">The connection may begin working within minutes, but DNS updates can sometimes take 24–48 hours.</div>
+        </section>
+      </div>
+
+      <div class="domain-flow" aria-label="How a domain connects to a website">
+        <strong>Namecheap<br>your domain</strong><span aria-hidden="true">→</span><strong>Your website platform<br>your hosting</strong><span aria-hidden="true">→</span><strong>Your personal website<br>your public address</strong>
+      </div>
+      <div class="domain-summary"><div><strong>Namecheap</strong> is your domain registrar.</div><div><strong>Vercel, Netlify, Replit, or another platform</strong> hosts your website.</div></div>
     </div>
   </dialog>
 
@@ -838,6 +968,7 @@
       const quickPrompt = document.getElementById("quickPrompt");
       const personalPrompt = document.getElementById("personalPrompt");
       const dialog = document.getElementById("themeDialog");
+      const domainDialog = document.getElementById("domainDialog");
       let dialogTheme = "minimal";
 
       try {
@@ -1111,6 +1242,9 @@
       document.getElementById("closeDialog").addEventListener("click", () => dialog.close());
       dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
       document.getElementById("copyDialogPrompt").addEventListener("click", () => copyText(themePrompts[dialogTheme]));
+      document.getElementById("openDomainGuide").addEventListener("click", () => domainDialog.showModal());
+      document.getElementById("closeDomainDialog").addEventListener("click", () => domainDialog.close());
+      domainDialog.addEventListener("click", event => { if (event.target === domainDialog) domainDialog.close(); });
 
       document.getElementById("downloadGuide").addEventListener("click", downloadGuide);
       document.getElementById("downloadGuideBottom").addEventListener("click", downloadGuide);
