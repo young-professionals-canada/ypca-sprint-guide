@@ -88,6 +88,10 @@
       width: min(1180px, calc(100% - 40px));
       margin: auto;
       padding: clamp(68px, 10vw, 118px) 0 clamp(76px, 10vw, 112px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, 350px);
+      align-items: center;
+      gap: clamp(42px, 6vw, 82px);
     }
     .eyebrow {
       margin: 0 0 28px;
@@ -99,8 +103,8 @@
     }
     h1 {
       margin: 0;
-      max-width: 900px;
-      font-size: clamp(3rem, 7vw, 6.5rem);
+      max-width: 800px;
+      font-size: clamp(3rem, 6.2vw, 5.8rem);
       line-height: .98;
       letter-spacing: -.06em;
     }
@@ -133,6 +137,22 @@
       font-size: .83rem;
       font-weight: 800;
     }
+    .hero-agenda {
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.23);
+      border-top: 6px solid var(--coral);
+      border-radius: 16px;
+      background: rgba(255,255,255,.09);
+      box-shadow: 0 24px 60px rgba(12,24,76,.25);
+      backdrop-filter: blur(10px);
+    }
+    .agenda-heading { margin: 0; padding: 19px 22px 15px; color: #ffadb5; font-size: .72rem; font-weight: 900; letter-spacing: .17em; text-transform: uppercase; }
+    .agenda-item { padding: 18px 22px; display: grid; gap: 3px; border-top: 1px solid rgba(255,255,255,.14); }
+    .agenda-time { color: #ff929c; font-size: .76rem; font-weight: 900; letter-spacing: .08em; text-transform: uppercase; }
+    .agenda-item strong { color: #fff; font-size: 1.1rem; line-height: 1.25; }
+    .agenda-item span:last-child { color: #dfe3f8; font-size: .86rem; }
+    .agenda-break { padding: 9px 22px; border-top: 1px solid rgba(255,255,255,.14); background: rgba(255,255,255,.07); color: #dfe3f8; font-size: .75rem; font-weight: 800; text-align: center; text-transform: uppercase; letter-spacing: .08em; }
+    .agenda-note { margin: 0; padding: 15px 22px 18px; border-top: 1px solid rgba(255,255,255,.14); color: #fff; font-size: .83rem; font-weight: 750; }
 
     .sessions {
       width: min(1180px, calc(100% - 40px));
@@ -199,9 +219,9 @@
       font-weight: 900;
     }
     .session-date {
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
       margin-bottom: 13px;
       color: var(--coral-dark);
       font-size: .76rem;
@@ -209,9 +229,10 @@
       letter-spacing: .1em;
       text-transform: uppercase;
     }
-    .session-date::before { content: ""; width: 24px; height: 2px; background: var(--coral); }
+    .session-date::before { content: ""; position: absolute; top: 50%; left: -32px; width: 24px; height: 2px; transform: translateY(-50%); background: var(--coral); }
     .session-card h3 {
       margin: 0;
+      min-height: 2.16em;
       color: var(--navy);
       font-size: clamp(1.65rem, 3vw, 2.25rem);
       line-height: 1.08;
@@ -220,7 +241,7 @@
     .session-description { margin: 18px 0 0; color: var(--muted); }
     .outcomes {
       margin: 0 32px;
-      padding: 22px 0 4px;
+      padding: 22px 0 26px;
       border-top: 1px solid var(--line);
       display: grid;
       gap: 10px;
@@ -366,12 +387,17 @@
     .footer-program { margin-left: 15px; padding-left: 15px; border-left: 1px solid var(--line); }
     .footer-event-name { color: var(--navy); font-weight: 900; }
 
+    @media (max-width: 940px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-agenda { width: min(100%, 520px); }
+    }
     @media (max-width: 800px) {
       .header-note { display: none; }
       .section-heading { display: block; }
       .section-heading > p { margin-top: 14px; }
       .session-grid { grid-template-columns: 1fr; }
       .session-card { min-height: 0; }
+      .session-card h3 { min-height: 0; }
       .day-note { align-items: stretch; flex-direction: column; }
       .register { align-self: flex-start; }
       .more-card { grid-template-columns: 1fr; gap: 24px; }
@@ -384,6 +410,7 @@
       .brand-program { margin-left: 10px; padding-left: 10px; font-size: .75rem; }
       .header-link { display: none; }
       .card-top { padding: 26px 24px 20px; }
+      .session-date::before { left: -24px; width: 16px; }
       .outcomes { margin-inline: 24px; }
       .card-action { padding-inline: 24px; }
       .day-note { padding: 22px; }
@@ -421,15 +448,32 @@
   <main>
     <section class="hero">
       <div class="hero-inner">
-        <p class="eyebrow">YPCA · Career Academy presents</p>
-        <h1>Sprint <span class="hero-accent">Workshop Guide</span></h1>
-        <p class="hero-tagline">Choose your session. Build the real thing.</p>
-        <p class="hero-copy">The August 22 workshops are separate sessions, each with its own hands-on guide. Open the guide for the session you are attending.</p>
-        <div class="hero-meta" aria-label="Event details">
-          <span class="meta-pill">Saturday, August 22</span>
-          <span class="meta-pill">In person</span>
-          <span class="meta-pill">Bring your laptop</span>
+        <div>
+          <p class="eyebrow">YPCA · Career Academy presents</p>
+          <h1>Sprint <span class="hero-accent">Workshop Guide</span></h1>
+          <p class="hero-tagline">Choose your session. Build the real thing.</p>
+          <p class="hero-copy">The August 22 workshops are separate sessions, each with its own hands-on guide. Open the guide for the session you are attending.</p>
+          <div class="hero-meta" aria-label="Event details">
+            <span class="meta-pill">Saturday, August 22</span>
+            <span class="meta-pill">In person</span>
+            <span class="meta-pill">Bring your laptop</span>
+          </div>
         </div>
+        <aside class="hero-agenda" aria-label="Saturday workshop schedule">
+          <p class="agenda-heading">Saturday at a glance</p>
+          <div class="agenda-item">
+            <span class="agenda-time">1:00-4:00 PM</span>
+            <strong>Resume Building + Tailoring</strong>
+            <span>Build your resume and define a project.</span>
+          </div>
+          <div class="agenda-break">30-minute break</div>
+          <div class="agenda-item">
+            <span class="agenda-time">4:30-6:30 PM</span>
+            <strong>Personal Website Workshop</strong>
+            <span>Turn your resume into a live website.</span>
+          </div>
+          <p class="agenda-note">Attend either workshop or stay for both sessions.</p>
+        </aside>
       </div>
     </section>
 
@@ -439,7 +483,7 @@
           <p class="section-kicker">Two sessions · Two guides</p>
           <h2 id="sessions-title">Select your workshop</h2>
         </div>
-        <p>Start with the resume session, join the personal website session, or attend both. Your progress stays inside each guide.</p>
+        <p>Each workshop has its own step-by-step guide, practical prompts, checklists, and resources. Choose a guide below to get started.</p>
       </div>
 
       <div class="session-grid">
