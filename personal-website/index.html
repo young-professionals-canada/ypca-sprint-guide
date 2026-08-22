@@ -317,8 +317,9 @@
     .publish-card h3 { margin: 0 0 9px; color: var(--navy); }
     .publish-card p { margin: 0 0 16px; color: var(--muted); }
     .numbered-list { margin: 0; padding: 0; list-style: none; counter-reset: publish; display: grid; gap: 10px; }
-    .numbered-list li { counter-increment: publish; display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; color: #46516e; }
-    .numbered-list li::before { content: counter(publish); width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; background: var(--navy); color: #fff; font-size: .74rem; font-weight: 850; }
+    .numbered-list li { position: relative; min-height: 28px; padding-left: 38px; counter-increment: publish; color: #46516e; line-height: 1.55; }
+    .numbered-list li::before { content: counter(publish); position: absolute; top: 0; left: 0; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; background: var(--navy); color: #fff; font-size: .74rem; font-weight: 850; }
+    .numbered-copy { min-width: 0; }
     .publish-check { margin-top: 18px; display: flex; align-items: flex-start; gap: 10px; padding: 14px; border-radius: 9px; background: var(--blush); color: var(--navy); font-weight: 800; }
     .publish-check input { width: 19px; height: 19px; accent-color: var(--coral); }
 
@@ -356,6 +357,9 @@
       .step-nav { position: static; display: flex; gap: 5px; overflow-x: auto; }
       .step-nav p { display: none; }
       .step-nav a { white-space: nowrap; }
+    }
+    @media (max-width: 1100px) {
+      .prompt-layout { grid-template-columns: 1fr; }
     }
     @media (max-width: 820px) {
       .top-actions .secondary-action { display: none; }
@@ -671,10 +675,10 @@
               <h3>Publish from v0</h3>
               <p>Get the public link first. That is enough to complete the workshop.</p>
               <ol class="numbered-list">
-                <li>Open the <strong>Publish</strong> menu in your v0 project.</li>
-                <li>Publish the production version.</li>
-                <li>Open the public link and test it.</li>
-                <li>Use <strong>Publish Changes</strong> after future edits.</li>
+                <li><span class="numbered-copy">Open the <strong>Publish</strong> menu in your v0 project.</span></li>
+                <li><span class="numbered-copy">Publish the production version.</span></li>
+                <li><span class="numbered-copy">Open the public link and test it.</span></li>
+                <li><span class="numbered-copy">Use <strong>Publish Changes</strong> after future edits.</span></li>
               </ol>
               <div class="build-actions"><a class="button navy small" href="https://v0.dev/docs/deployments" target="_blank" rel="noopener">Official v0 guide ↗</a></div>
             </article>
@@ -682,11 +686,11 @@
               <h3>Connect a custom domain</h3>
               <p>This is optional and can be completed after the workshop.</p>
               <ol class="numbered-list">
-                <li>Open the related Vercel project.</li>
-                <li>Go to <strong>Settings → Domains</strong>.</li>
-                <li>Enter the domain you own.</li>
-                <li>Copy the DNS records Vercel displays into your domain provider.</li>
-                <li>Wait for Vercel to verify the configuration.</li>
+                <li><span class="numbered-copy">Open the related Vercel project.</span></li>
+                <li><span class="numbered-copy">Go to <strong>Settings → Domains</strong>.</span></li>
+                <li><span class="numbered-copy">Enter the domain you own.</span></li>
+                <li><span class="numbered-copy">Copy the DNS records Vercel displays into your domain provider.</span></li>
+                <li><span class="numbered-copy">Wait for Vercel to verify the configuration.</span></li>
               </ol>
               <div class="build-actions"><a class="button ghost small" href="https://vercel.com/docs/domains/working-with-domains/add-a-domain" target="_blank" rel="noopener">Official domain guide ↗</a></div>
             </article>
