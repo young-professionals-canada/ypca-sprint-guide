@@ -1,0 +1,30 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LessonPage from "../../../components/LessonPage.astro";
+
+export async function getStaticPaths() {
+  const courses = await getCollection("courses");
+  const lessons = await getCollection("lessons");
+  const courseMap = new Map(courses.map((course) => [course.data.slug, course]));
+  return lessons.map((lesson) => {
+    const course = courseMap.get(lesson.data.course);
+    if (!course) throw new Error(`Missing course ${lesson.data.course} for lesson ${lesson.id}`);
+    const lessonMap = new Map(lessons.filter((item) => item.data.course === course.data.slug).map((item) => [item.data.slug, item]));
+    const orderedLessons = course.data.modules.flatMap((module) => module.lessons.map((slug) => lessonMap.get(slug))).filter(Boolean);
+    return { params: { course: course.data.slug, lesson: lesson.data.slug }, props: { course, lesson, orderedLessons } };
+  });
+}
+
+interface Props {
+  course: CollectionEntry<"courses">;
+  lesson: CollectionEntry<"lessons">;
+  orderedLessons: CollectionEntry<"lessons">[];
+}
+
+const { course, lesson, orderedLessons } = Astro.props;
+---
+
+<BaseLayout title={`${lesson.data.title} | ${course.data.shortTitle} | YPCA`} description={lesson.data.objective} pageClass="lesson-page">
+  <LessonPage course={course} lesson={lesson} orderedLessons={orderedLessons} />
+</BaseLayout>

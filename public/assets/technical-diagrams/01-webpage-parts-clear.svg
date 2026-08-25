@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">What makes a webpage?</title>
+  <desc id="desc">HTML provides the content and structure, CSS provides the visual style, and JavaScript provides actions and behaviour. A browser combines all three into the webpage people see.</desc>
+
+  <rect width="1200" height="675" fill="#F7F5F2"/>
+  <rect x="1030" width="170" height="170" fill="#F1EDF8"/>
+  <rect y="580" width="105" height="95" fill="#FCEBED"/>
+
+  <rect x="30" y="30" width="1140" height="615" rx="28" fill="#FFFFFF" stroke="#D8DEE9" stroke-width="1.5"/>
+  <path d="M58 30H1142A28 28 0 0 1 1170 58V46H30V58A28 28 0 0 1 58 30Z" fill="#F06473"/>
+
+  <text x="60" y="73" fill="#F06473" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700" letter-spacing="2.3">WEBSITE BASICS · 01</text>
+  <text x="60" y="121" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800" letter-spacing="-0.7">What makes a webpage?</text>
+  <text x="60" y="160" fill="#5E6682" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="600">HTML, CSS and JavaScript work together. The browser turns them into the page you see.</text>
+
+  <!-- HTML -->
+  <rect x="50" y="220" width="205" height="310" rx="24" fill="#FCEBED" stroke="#EBC9CF" stroke-width="2"/>
+  <rect x="98" y="240" width="109" height="38" rx="19" fill="#F06473"/>
+  <text x="152.5" y="265" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" letter-spacing="0.8">HTML</text>
+  <path d="M119 298H171L193 320V380H119Z" fill="#FFFFFF" stroke="#F06473" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M171 298V320H193" fill="none" stroke="#F06473" stroke-width="4" stroke-linejoin="round"/>
+  <path d="M148 331L137 340L148 349M164 331L175 340L164 349" fill="none" stroke="#243678" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="152.5" y="414" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">CONTENT</text>
+  <text x="152.5" y="442" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">&amp; STRUCTURE</text>
+  <text x="152.5" y="482" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Text · Sections · Links</text>
+
+  <!-- Plus -->
+  <text x="277.5" y="387" text-anchor="middle" fill="#F06473" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">+</text>
+
+  <!-- CSS -->
+  <rect x="300" y="220" width="205" height="310" rx="24" fill="#F1EDF8" stroke="#D7CCE8" stroke-width="2"/>
+  <rect x="348" y="240" width="109" height="38" rx="19" fill="#594477"/>
+  <text x="402.5" y="265" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" letter-spacing="0.8">CSS</text>
+  <rect x="357" y="298" width="91" height="82" rx="14" fill="#FFFFFF" stroke="#594477" stroke-width="4"/>
+  <text x="377" y="347" fill="#243678" font-family="Georgia, serif" font-size="34" font-weight="700">A</text>
+  <circle cx="421" cy="326" r="9" fill="#F06473"/>
+  <circle cx="421" cy="351" r="9" fill="#238C8A"/>
+  <text x="402.5" y="414" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">VISUAL STYLE</text>
+  <text x="402.5" y="468" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Colours · Fonts</text>
+  <text x="402.5" y="493" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Spacing · Layout</text>
+
+  <!-- Plus -->
+  <text x="527.5" y="387" text-anchor="middle" fill="#F06473" font-family="Arial, Helvetica, sans-serif" font-size="40" font-weight="800">+</text>
+
+  <!-- JavaScript -->
+  <rect x="550" y="220" width="205" height="310" rx="24" fill="#E4F4F4" stroke="#B7DDDC" stroke-width="2"/>
+  <rect x="578" y="240" width="149" height="38" rx="19" fill="#238C8A"/>
+  <text x="652.5" y="265" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="15" font-weight="800" letter-spacing="0.5">JAVASCRIPT</text>
+  <rect x="606" y="298" width="93" height="82" rx="14" fill="#FFFFFF" stroke="#238C8A" stroke-width="4"/>
+  <rect x="621" y="315" width="63" height="27" rx="8" fill="#F06473"/>
+  <text x="652.5" y="334" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="800">CLICK</text>
+  <path d="M648 348L674 368L662 370L667 381L659 385L654 374L644 382Z" fill="#243678"/>
+  <text x="652.5" y="414" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">ACTIONS</text>
+  <text x="652.5" y="442" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="23" font-weight="800">&amp; BEHAVIOUR</text>
+  <text x="652.5" y="478" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Menus · Forms</text>
+  <text x="652.5" y="503" text-anchor="middle" fill="#59627E" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">Animation</text>
+
+  <!-- Browser combines the three files -->
+  <text x="812.5" y="350" text-anchor="middle" fill="#594477" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="800" letter-spacing="0.8">BROWSER</text>
+  <text x="812.5" y="368" text-anchor="middle" fill="#594477" font-family="Arial, Helvetica, sans-serif" font-size="12.5" font-weight="800" letter-spacing="0.8">COMBINES</text>
+  <path d="M785 394H838" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round"/>
+  <path d="M830 383L842 394L830 405" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Final webpage -->
+  <rect x="870" y="220" width="280" height="310" rx="24" fill="#243678"/>
+  <rect x="922" y="260" width="176" height="116" rx="14" fill="#FFFFFF"/>
+  <path d="M922 289H1098" fill="none" stroke="#243678" stroke-width="4"/>
+  <circle cx="938" cy="275" r="5" fill="#F06473"/>
+  <circle cx="953" cy="275" r="5" fill="#F2C45B"/>
+  <circle cx="968" cy="275" r="5" fill="#61C58B"/>
+  <rect x="940" y="306" width="83" height="13" rx="6.5" fill="#F06473"/>
+  <path d="M940 337H1080M940 354H1047" fill="none" stroke="#A8B3D0" stroke-width="7" stroke-linecap="round"/>
+  <rect x="1041" y="305" width="39" height="39" rx="8" fill="#E4F4F4"/>
+  <text x="1010" y="414" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="800">WEBPAGE</text>
+  <text x="1010" y="454" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-size="19" font-weight="700">The page people see</text>
+  <text x="1010" y="493" text-anchor="middle" fill="#E7ECFA" font-family="Arial, Helvetica, sans-serif" font-size="15.5" font-weight="600">HTML + CSS + JavaScript</text>
+
+  <rect x="170" y="565" width="860" height="50" rx="25" fill="#FCEBED"/>
+  <text x="600" y="597" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700">AI website builders write these files for you — you still review the final page.</text>
+</svg>

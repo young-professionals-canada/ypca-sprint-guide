@@ -1,0 +1,30 @@
+{
+  "slug": "linkedin-presence",
+  "number": "03",
+  "title": "Build Your LinkedIn Presence",
+  "shortTitle": "LinkedIn Presence",
+  "summary": "Turn your verified career evidence into a clear LinkedIn profile, build a purposeful network, and create a realistic visibility routine.",
+  "level": "Beginner friendly",
+  "guidedMinutes": 90,
+  "buildTime": "1–2 hours of independent work",
+  "accent": "purple",
+  "outcomes": [
+    "A complete, evidence-based LinkedIn profile",
+    "A purposeful networking and outreach workflow",
+    "A practical 30-day visibility routine"
+  ],
+  "prerequisites": [
+    "A completed resume or Master Profile",
+    "A LinkedIn account you can edit",
+    "A laptop or desktop computer"
+  ],
+  "modules": [
+    { "title": "Position your profile", "description": "Set a clear goal, review visibility, and write a strong introduction.", "lessons": ["linkedin-foundations", "headline-and-about"] },
+    { "title": "Prove your value", "description": "Connect your experience, skills, projects, and settings to verified evidence.", "lessons": ["experience-and-skills", "proof-and-visibility"] },
+    { "title": "Build professional relationships", "description": "Connect with purpose, contribute usefully, and maintain a sustainable routine.", "lessons": ["network-with-purpose", "engage-and-maintain"] }
+  ],
+  "resources": [
+    { "label": "LinkedIn profile editing help", "href": "https://www.linkedin.com/help/linkedin/answer/a546603", "kind": "external" },
+    { "label": "Find your public profile URL", "href": "https://www.linkedin.com/help/linkedin/answer/a522735", "kind": "external" }
+  ]
+}

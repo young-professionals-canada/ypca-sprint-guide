@@ -1,0 +1,108 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { withBase } from "../../../lib/paths";
+---
+
+<BaseLayout
+  title="August 29 LinkedIn Sprint | YPCA Career Academy"
+  description="A focused YPCA Career Academy event combining the Build Your LinkedIn Presence course with a professional LinkedIn photo shoot."
+  pageClass="event-page"
+>
+  <section class="event-hero">
+    <div class="shell event-hero-grid">
+      <div>
+        <a class="back-link" href={withBase("events/sprint-2026/")}>← All Sprint workshops</a>
+        <p class="eyebrow">One-day Career Academy Sprint · Saturday, August 29, 2026</p>
+        <h1>Build your LinkedIn presence and leave with a professional profile photo.</h1>
+        <p class="event-lede">A focused YPCA session that pairs practical LinkedIn profile and networking guidance with a professional photo shoot.</p>
+        <div class="hero-actions">
+          <a class="button primary" href={withBase("courses/linkedin-presence/")}>Open the LinkedIn course</a>
+          <a class="text-link" href="#prepare">Prepare for the event <span aria-hidden="true">↓</span></a>
+        </div>
+      </div>
+      <aside class="event-checklist" aria-labelledby="event-checklist-title">
+        <p class="path-kicker" id="event-checklist-title">Bring with you</p>
+        <ul>
+          <li><span aria-hidden="true">01</span><div><strong>Your laptop and charger</strong><small>You will edit your profile during the session.</small></div></li>
+          <li><span aria-hidden="true">02</span><div><strong>Your LinkedIn login</strong><small>Confirm that you can sign in before arriving.</small></div></li>
+          <li><span aria-hidden="true">03</span><div><strong>Your resume or Master Profile</strong><small>Use verified evidence as your source of truth.</small></div></li>
+          <li><span aria-hidden="true">04</span><div><strong>A photo-ready outfit</strong><small>Choose something that feels professional and like you.</small></div></li>
+        </ul>
+        <p class="event-detail-note">Check your YPCA event confirmation for the time and location.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="event-program" aria-labelledby="program-title">
+    <div class="shell">
+      <div class="section-heading">
+        <div><p class="section-kicker">The event programme</p><h2 id="program-title">Two parts. One stronger professional presence.</h2></div>
+        <p>Work through the profile decisions that matter, then add a current photo that helps people recognize you.</p>
+      </div>
+      <div class="event-program-grid">
+        <article class="event-program-card">
+          <span>Part 01</span>
+          <h3>LinkedIn profile + networking</h3>
+          <p>Clarify your audience, strengthen your headline and About section, add evidence, and build a respectful relationship workflow.</p>
+          <ul>
+            <li>Evidence-based profile updates</li>
+            <li>Headline and About templates</li>
+            <li>Purposeful connection messages</li>
+            <li>A realistic 30-day visibility routine</li>
+          </ul>
+          <a href={withBase("courses/linkedin-presence/")}>Start the self-directed course →</a>
+        </article>
+        <article class="event-program-card photo-card">
+          <span>Part 02</span>
+          <h3>LinkedIn photo shoot</h3>
+          <p>Create a clear, approachable profile image that feels current, recognizably you, and suitable for your professional direction.</p>
+          <ul>
+            <li>Simple portrait preparation</li>
+            <li>A clean, professional composition</li>
+            <li>Time to review and select your image</li>
+            <li>Guidance for cropping it on LinkedIn</li>
+          </ul>
+          <a href="#photo-ready">Get photo-ready →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="event-prep" id="prepare" aria-labelledby="prepare-title">
+    <div class="shell event-prep-grid">
+      <div>
+        <p class="section-kicker">Before, during, after</p>
+        <h2 id="prepare-title">Use the event time well.</h2>
+        <p>Do the light preparation before you arrive so the workshop can focus on decisions, feedback, and real updates.</p>
+      </div>
+      <ol class="event-timeline">
+        <li><span>Before</span><div><h3>Prepare your source material</h3><p>Open the first course lesson, confirm your LinkedIn login, bring your current resume, and identify the audience you want your profile to serve.</p></div></li>
+        <li><span>During</span><div><h3>Build and capture</h3><p>Work through the guided activities, ask focused questions, take your new photo, and review changes before publishing them.</p></div></li>
+        <li><span>After</span><div><h3>Finish and maintain</h3><p>Complete any remaining lessons, upload only a photo you approve, test your public profile, and begin your 30-day relationship routine.</p></div></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="photo-prep" id="photo-ready" aria-labelledby="photo-title">
+    <div class="shell photo-prep-grid">
+      <div>
+        <p class="section-kicker">Photo-shoot guide</p>
+        <h2 id="photo-title">Look prepared without looking unlike yourself.</h2>
+        <p>The strongest profile photo is clear, current, and comfortable. It should make it easier for someone to recognize you—not turn you into a different person.</p>
+      </div>
+      <div class="photo-tips">
+        <article><span>01</span><h3>Choose simple clothing</h3><p>Solid colours and subtle patterns keep attention on your face. Avoid distracting logos or very fine patterns.</p></article>
+        <article><span>02</span><h3>Dress for your direction</h3><p>Aim for the level of formality common in your field while keeping the outfit authentic and comfortable.</p></article>
+        <article><span>03</span><h3>Keep the image current</h3><p>Use a recent photo that still looks like you and can be recognized easily when meeting someone in person.</p></article>
+        <article><span>04</span><h3>Review before uploading</h3><p>Choose an expression and crop you like. Only publish a photo you have reviewed and approved for your profile.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="event-final-cta">
+    <div class="shell">
+      <div><p>Start before August 29</p><h2>Your course is ready whenever you are.</h2><span>Progress saves in this browser, so you can begin now and continue during the event.</span></div>
+      <a class="button primary" href={withBase("courses/linkedin-presence/")}>Open Build Your LinkedIn Presence</a>
+    </div>
+  </section>
+</BaseLayout>

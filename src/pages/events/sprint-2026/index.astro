@@ -1,0 +1,33 @@
+---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { withBase } from "../../../lib/paths";
+---
+
+<BaseLayout title="2026 Sprint Workshops | YPCA Career Academy" description="August 2026 YPCA Career Academy Sprint workshops and self-directed course guides." pageClass="archive-page">
+  <section class="archive-hero">
+    <div class="shell archive-grid">
+      <div>
+        <a class="back-link" href={withBase()}>← Current academy</a>
+        <p class="eyebrow">Workshop series · August 17–30, 2026</p>
+        <h1>Career Academy Sprint</h1>
+        <p>Hands-on workshops supported by practical, self-directed course guides you can revisit at any time.</p>
+      </div>
+      <aside>
+        <p>August 2026 workshop schedule</p>
+        <div><strong>Saturday, August 22 · 1:00–4:00 PM</strong><span>Resume Building + Tailoring + Project Building</span></div>
+        <div><strong>Saturday, August 22 · 4:30–6:30 PM</strong><span>Personal Website Workshop</span></div>
+        <div class="featured-schedule"><strong>Saturday, August 29</strong><span>LinkedIn Profile + Networking + Photo Shoot</span><a href={withBase("events/august-29/")}>View August 29 event →</a></div>
+      </aside>
+    </div>
+  </section>
+  <section class="archive-content">
+    <div class="shell">
+      <div class="section-heading"><div><p class="section-kicker">The material continues</p><h2>The workshop guides are now complete courses.</h2></div><p>Use the expanded lessons at your own pace. Progress saves in your browser, and all original downloads remain available.</p></div>
+      <div class="archive-course-links">
+        <a href={withBase("courses/resume-career-assets/")}><span>Course 01</span><strong>Resume, Tailoring & Standout Project</strong><em>Open course →</em></a>
+        <a href={withBase("courses/personal-website/")}><span>Course 02</span><strong>Build Your Personal Website</strong><em>Open course →</em></a>
+        <a href={withBase("courses/linkedin-presence/")}><span>Course 03</span><strong>Build Your LinkedIn Presence</strong><em>Open course →</em></a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

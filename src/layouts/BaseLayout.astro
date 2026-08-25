@@ -1,0 +1,75 @@
+---
+import "../styles/global.css";
+import { withBase } from "../lib/paths";
+
+interface Props {
+  title?: string;
+  description?: string;
+  pageClass?: string;
+  socialImage?: string;
+}
+
+const {
+  title = "YPCA Career Academy",
+  description = "Self-directed career courses from Young Professionals Canada.",
+  pageClass = "",
+  socialImage
+} = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const socialImageUrl = socialImage ? new URL(withBase(socialImage), Astro.site) : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#223377" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {socialImageUrl && <meta property="og:image" content={socialImageUrl} />}
+    {socialImageUrl && <meta property="og:image:width" content="1200" />}
+    {socialImageUrl && <meta property="og:image:height" content="630" />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {socialImageUrl && <meta name="twitter:image" content={socialImageUrl} />}
+    <title>{title}</title>
+  </head>
+  <body class={pageClass}>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="shell header-inner">
+        <a class="brand" href={withBase()} aria-label="YPCA Career Academy home">
+          <img src={withBase("assets/ypca-wordmark.png")} alt="Young Professionals Canada" />
+          <span>Career Academy</span>
+        </a>
+        <nav class="header-nav" aria-label="Primary navigation">
+          <a href={withBase("#courses")}>Courses</a>
+          <a href={withBase("visual-guides/")}>Visual guides</a>
+          <a class="nav-cta" href={withBase("#courses")}>Start learning</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main-content">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="shell footer-inner">
+        <div class="footer-brand">
+          <img src={withBase("assets/ypca-wordmark.png")} alt="Young Professionals Canada" />
+          <span>Career Academy</span>
+        </div>
+        <p>Practical, self-directed learning for your next career move.</p>
+        <nav class="footer-links" aria-label="YPCA links">
+          <a href={withBase("events/sprint-2026/")}>2026 Sprint workshops</a>
+          <a href="https://log.youngprofessionalscanada.ca/" target="_blank" rel="noopener">Career Academy on LOG ↗</a>
+          <a href="https://www.youngprofessionalscanada.ca/" target="_blank" rel="noopener">YPCA website ↗</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

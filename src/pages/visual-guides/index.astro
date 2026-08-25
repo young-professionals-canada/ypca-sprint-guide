@@ -1,0 +1,88 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { withBase } from "../../lib/paths";
+
+const guides = [
+  { file: "01-webpage-parts-clear.svg", course: "Personal Website", title: "What makes a webpage?", description: "How HTML, CSS, and JavaScript become the page a visitor sees." },
+  { file: "02-resume-to-website-clear.svg", course: "Personal Website", title: "How your resume becomes a website", description: "The path from verified facts to a reviewed public site." },
+  { file: "03-website-prompt-v5.svg", course: "Personal Website", title: "What belongs in the prompt", description: "Combine the goal, facts, sections, and visual direction." },
+  { file: "04-review-loop-v5.svg", course: "Personal Website", title: "Improve one change at a time", description: "A practical generate, review, and revision loop." },
+  { file: "05-responsive-layout-v5.svg", course: "Personal Website", title: "The same website on every screen", description: "How one set of content rearranges across screen sizes." },
+  { file: "06-domain-hosting-website-v5.svg", course: "Personal Website", title: "Domain, hosting, and website", description: "The address, storage service, and pages are different things." },
+  { file: "07-domain-phone-contact-v5.svg", course: "Personal Website", title: "A domain is like a saved contact", description: "A familiar analogy for names, lookups, and addresses." },
+  { file: "08-private-publish-public-v5.svg", course: "Personal Website", title: "Preview first, then publish", description: "Understand when work is private and when it becomes public." },
+  { file: "09-evidence-to-assets.svg", course: "Resume & Project", title: "One source of truth", description: "Verified evidence supports every future career asset." },
+  { file: "10-truthful-tailoring.svg", course: "Resume & Project", title: "The truthful tailoring filter", description: "Only supported requirements become resume claims." },
+  { file: "11-project-scope.svg", course: "Resume & Project", title: "Scope the smallest credible project", description: "Move from one problem to one immediate action." },
+  { file: "12-linkedin-profile-stack.svg", course: "LinkedIn Presence", title: "Build the profile in layers", description: "Move from accurate identity and goals to evidence, proof, and connection." },
+  { file: "13-linkedin-relationship-loop.svg", course: "LinkedIn Presence", title: "Build relationships before requests", description: "Discover, engage, connect, follow up, and contribute over time." }
+];
+---
+
+<BaseLayout title="Visual Guides | YPCA Career Academy" description="Simple visual explanations for YPCA's resume, project, and personal website courses." pageClass="visual-library-page">
+  <section class="library-hero">
+    <div class="shell">
+      <a class="back-link" href={withBase()}>← Academy home</a>
+      <p class="eyebrow">Visual learning library</p>
+      <h1>Simple diagrams for the ideas that are easier to see.</h1>
+      <p>Use these lean visual guides during a lesson or return here when you want to review a process quickly.</p>
+    </div>
+  </section>
+  <section class="library-section">
+    <div class="shell">
+      <div class="library-controls" aria-label="Filter visual guides">
+        <button class="active" type="button" data-filter="all">All guides</button>
+        <button type="button" data-filter="Resume & Project">Resume & Project</button>
+        <button type="button" data-filter="Personal Website">Personal Website</button>
+        <button type="button" data-filter="LinkedIn Presence">LinkedIn Presence</button>
+      </div>
+      <div class="visual-grid">
+        {guides.map((guide, index) => (
+          <article class="visual-card" data-guide-course={guide.course}>
+            <button type="button" class="visual-open" data-open-guide={index} data-guide-file={guide.file} data-guide-title={guide.title} data-guide-description={guide.description} data-guide-course-name={guide.course} aria-label={`Open ${guide.title}`}>
+              <img src={withBase(`assets/technical-diagrams/${guide.file}`)} alt="" />
+            </button>
+            <div><p>{guide.course}</p><h2>{guide.title}</h2><span>{guide.description}</span></div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <dialog class="visual-dialog" data-visual-dialog aria-labelledby="visual-dialog-title">
+    <div class="visual-dialog-head"><div><p data-visual-course></p><h2 id="visual-dialog-title" data-visual-title></h2></div><button type="button" data-close-guide aria-label="Close visual guide">×</button></div>
+    <img data-visual-image alt="" />
+    <p data-visual-description></p>
+  </dialog>
+  <script>
+    const buttons = document.querySelectorAll("[data-filter]");
+    buttons.forEach((button) => button.addEventListener("click", () => {
+      const filter = button.getAttribute("data-filter");
+      buttons.forEach((item) => item.classList.toggle("active", item === button));
+      document.querySelectorAll("[data-guide-course]").forEach((card) => {
+        if (card instanceof HTMLElement) card.hidden = filter !== "all" && card.getAttribute("data-guide-course") !== filter;
+      });
+    }));
+    const dialog = document.querySelector<HTMLDialogElement>("[data-visual-dialog]");
+    document.querySelectorAll("[data-open-guide]").forEach((button) => button.addEventListener("click", () => {
+      if (!dialog || !(button instanceof HTMLElement)) return;
+      const title = button.dataset.guideTitle || "Visual guide";
+      const description = button.dataset.guideDescription || "";
+      const course = button.dataset.guideCourseName || "";
+      const file = button.dataset.guideFile || "";
+      const courseNode = dialog.querySelector("[data-visual-course]");
+      const titleNode = dialog.querySelector("[data-visual-title]");
+      const descriptionNode = dialog.querySelector("[data-visual-description]");
+      if (courseNode) courseNode.textContent = course;
+      if (titleNode) titleNode.textContent = title;
+      if (descriptionNode) descriptionNode.textContent = description;
+      const image = dialog.querySelector<HTMLImageElement>("[data-visual-image]");
+      if (image) {
+        image.src = `${import.meta.env.BASE_URL}assets/technical-diagrams/${file}`;
+        image.alt = `${title}. ${description}`;
+      }
+      dialog.showModal();
+    }));
+    document.querySelector("[data-close-guide]")?.addEventListener("click", () => dialog?.close());
+    dialog?.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+  </script>
+</BaseLayout>
