@@ -6,7 +6,12 @@ import { withBase } from "../lib/paths";
 const courses = (await getCollection("courses")).sort((a, b) => a.data.number.localeCompare(b.data.number));
 ---
 
-<BaseLayout title="YPCA Career Academy | Learn by building" description="Free, self-directed career courses that help you build a stronger resume, standout project, and personal website." socialImage="og.png">
+<BaseLayout
+  title="YPCA Career Academy Sprint"
+  description="Practical, self-directed career courses and Sprint workshops from Young Professionals Canada."
+  socialImage="og-career-academy-sprint.png"
+  socialImageAlt="YPCA Career Academy Sprint"
+>
   <section class="home-hero">
     <div class="shell hero-grid">
       <div class="hero-copy">
