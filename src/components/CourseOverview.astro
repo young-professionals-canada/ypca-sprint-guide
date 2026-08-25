@@ -1,0 +1,127 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { withBase } from "../lib/paths";
+
+interface Props {
+  course: CollectionEntry<"courses">;
+  lessons: CollectionEntry<"lessons">[];
+}
+
+const { course, lessons } = Astro.props;
+const data = course.data;
+const lessonMap = new Map(lessons.map((lesson) => [lesson.data.slug, lesson]));
+const orderedLessons = data.modules.flatMap((module) => module.lessons.map((slug) => lessonMap.get(slug))).filter(Boolean) as CollectionEntry<"lessons">[];
+const firstLesson = orderedLessons[0];
+---
+
+<section class={`course-hero accent-${data.accent}`} data-course-overview data-course-slug={data.slug} data-total-lessons={orderedLessons.length}>
+  <div class="shell course-hero-grid">
+    <div>
+      <a class="back-link" href={withBase("#courses")}>← All courses</a>
+      <p class="eyebrow">Course {data.number} · {data.level}</p>
+      <h1>{data.title}</h1>
+      <p class="course-lede">{data.summary}</p>
+      <div class="course-hero-actions">
+        <a class="button primary" data-start-course href={withBase(`courses/${data.slug}/${firstLesson.data.slug}/`)}>Start course</a>
+        <span><strong>{data.guidedMinutes} minutes</strong> guided learning<br /><small>{data.buildTime}</small></span>
+      </div>
+    </div>
+    <aside class="course-outcomes" aria-label="Course outcomes">
+      <p>By the end, you will have</p>
+      <ul>{data.outcomes.map((outcome) => <li>{outcome}</li>)}</ul>
+    </aside>
+  </div>
+</section>
+
+<section class="overview-section">
+  <div class="shell overview-layout">
+    <div class="course-content-main">
+      <div class="overview-heading">
+        <p class="section-kicker">Course roadmap</p>
+        <h2>Learn in three focused modules.</h2>
+        <p>Work in order the first time. After that, return to any lesson whenever you need the workflow again.</p>
+      </div>
+      <div class="module-list">
+        {data.modules.map((module, moduleIndex) => (
+          <section class="module-card">
+            <div class="module-heading">
+              <span>Module {moduleIndex + 1}</span>
+              <div><h3>{module.title}</h3><p>{module.description}</p></div>
+            </div>
+            <ol>
+              {module.lessons.map((slug) => {
+                const lesson = lessonMap.get(slug);
+                if (!lesson) return null;
+                return (
+                  <li data-lesson-row={slug}>
+                    <a href={withBase(`courses/${data.slug}/${slug}/`)}>
+                      <span class="lesson-status" aria-hidden="true">{String(lesson.data.number).padStart(2, "0")}</span>
+                      <span><strong>{lesson.data.title}</strong><small>{lesson.data.objective}</small></span>
+                      <span class="lesson-time">{lesson.data.minutes} min</span>
+                    </a>
+                  </li>
+                );
+              })}
+            </ol>
+          </section>
+        ))}
+      </div>
+    </div>
+    <aside class="overview-aside">
+      <section class="progress-card" data-overview-progress>
+        <p class="aside-kicker">Your progress</p>
+        <div class="progress-score"><strong data-progress-percent>0%</strong><span data-progress-copy>Not started yet</span></div>
+        <div class="progress-track"><span data-progress-bar></span></div>
+        <p data-progress-detail>Complete lessons when you have finished their activity and artifact checklist.</p>
+        <button class="reset-link" type="button" data-reset-course hidden>Reset course progress</button>
+      </section>
+      <section class="prerequisite-card">
+        <p class="aside-kicker">Before you start</p>
+        <ul>{data.prerequisites.map((item) => <li>{item}</li>)}</ul>
+      </section>
+      {data.resources.length > 0 && (
+        <section class="prerequisite-card">
+          <p class="aside-kicker">Course resources</p>
+          <div class="aside-links">
+            {data.resources.map((resource) => <a href={resource.kind === "external" ? resource.href : withBase(resource.href)} target={resource.kind === "external" ? "_blank" : undefined} rel={resource.kind === "external" ? "noopener" : undefined}>{resource.label} <span aria-hidden="true">↗</span></a>)}
+          </div>
+        </section>
+      )}
+    </aside>
+  </div>
+</section>
+
+<script>
+  import { getCourseRecord, resetCourseProgress, summarizeCourse } from "../scripts/progress";
+  const overview = document.querySelector<HTMLElement>("[data-course-overview]");
+  const courseSlug = overview?.dataset.courseSlug || "";
+  const totalLessons = Number(overview?.dataset.totalLessons || 0);
+  const renderOverview = () => {
+    const summary = summarizeCourse(courseSlug, totalLessons);
+    const record = getCourseRecord(courseSlug);
+    const percent = document.querySelector("[data-progress-percent]");
+    const copy = document.querySelector("[data-progress-copy]");
+    const detail = document.querySelector("[data-progress-detail]");
+    const bar = document.querySelector("[data-progress-bar]");
+    const reset = document.querySelector("[data-reset-course]");
+    const start = document.querySelector("[data-start-course]");
+    if (percent) percent.textContent = `${summary.percent}%`;
+    if (copy) copy.textContent = summary.percent === 100 ? "Course complete" : summary.percent > 0 ? "Course in progress" : "Not started yet";
+    if (detail) detail.textContent = summary.percent === 100 ? "You completed every lesson. Return at any time to review the workflow." : `${summary.completed} of ${summary.total} lessons complete`;
+    if (bar instanceof HTMLElement) bar.style.width = `${summary.percent}%`;
+    if (reset instanceof HTMLElement) reset.hidden = summary.percent === 0 && !summary.lastVisitedLesson;
+    if (start instanceof HTMLAnchorElement && summary.lastVisitedLesson) {
+      start.href = `${import.meta.env.BASE_URL}courses/${courseSlug}/${summary.lastVisitedLesson}/`;
+      start.textContent = summary.percent === 100 ? "Review course" : "Continue course";
+    }
+    document.querySelectorAll("[data-lesson-row]").forEach((row) => {
+      row.classList.toggle("is-complete", record.completedLessons.includes(row.getAttribute("data-lesson-row") || ""));
+    });
+  };
+  document.querySelector("[data-reset-course]")?.addEventListener("click", () => {
+    if (!confirm("Reset all saved progress for this course?")) return;
+    resetCourseProgress(courseSlug);
+    renderOverview();
+  });
+  renderOverview();
+</script>

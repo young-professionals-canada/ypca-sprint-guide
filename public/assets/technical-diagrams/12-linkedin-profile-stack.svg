@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">A strong LinkedIn profile is built in layers</title>
+  <desc id="desc">Accurate identity and a clear goal support an introduction, verified experience, relevant skills, visible proof, and a clear path to connect.</desc>
+  <rect width="1200" height="675" fill="#F3F1EE"/>
+  <circle cx="1155" cy="20" r="130" fill="#F0ECF8"/><circle cx="5" cy="675" r="95" fill="#FCEBED"/>
+  <rect x="30" y="30" width="1140" height="615" rx="24" fill="#FFFFFF" stroke="#D9DBE6"/>
+  <path d="M54 30H1146A24 24 0 0 1 1170 54V45H30V54A24 24 0 0 1 54 30Z" fill="#594477"/>
+  <text x="60" y="72" fill="#594477" font-family="Arial,sans-serif" font-size="16" font-weight="800" letter-spacing="1.8">LINKEDIN PRESENCE · 01</text>
+  <text x="60" y="122" fill="#243678" font-family="Arial,sans-serif" font-size="42" font-weight="800">Build the profile from truth to connection</text>
+  <rect x="150" y="505" width="900" height="72" rx="16" fill="#243678"/>
+  <text x="600" y="550" text-anchor="middle" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="25" font-weight="800">ACCURATE IDENTITY + CLEAR GOAL</text>
+  <rect x="220" y="417" width="760" height="67" rx="15" fill="#FCEBED" stroke="#E7C7CE" stroke-width="2"/>
+  <text x="600" y="459" text-anchor="middle" fill="#F06473" font-family="Arial,sans-serif" font-size="23" font-weight="800">INTRODUCTION · HEADLINE · ABOUT</text>
+  <rect x="290" y="329" width="620" height="67" rx="15" fill="#F0ECF8" stroke="#D8CEE8" stroke-width="2"/>
+  <text x="600" y="371" text-anchor="middle" fill="#594477" font-family="Arial,sans-serif" font-size="23" font-weight="800">VERIFIED EXPERIENCE + EDUCATION</text>
+  <rect x="360" y="241" width="480" height="67" rx="15" fill="#E6F4F3" stroke="#BCDCD9" stroke-width="2"/>
+  <text x="600" y="283" text-anchor="middle" fill="#1F817C" font-family="Arial,sans-serif" font-size="23" font-weight="800">RELEVANT SKILLS + PROOF</text>
+  <rect x="430" y="153" width="340" height="67" rx="33" fill="#594477"/>
+  <text x="600" y="195" text-anchor="middle" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="22" font-weight="800">CLEAR PATH TO CONNECT</text>
+  <text x="1060" y="550" text-anchor="end" fill="#DCE1F6" font-family="Arial,sans-serif" font-size="16" font-weight="700">REVIEW REGULARLY</text>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="title desc">
+  <title id="title">Improve one change at a time</title><desc id="desc">Start with a clear request, then repeat draft, review, and one specific change.</desc>
+  <rect width="1200" height="675" fill="#F3F1EE"/>
+  <circle cx="1160" cy="20" r="130" fill="#F0ECF8" stroke="none" stroke-width="0"/><circle cx="5" cy="675" r="95" fill="#FCEBED" stroke="none" stroke-width="0"/>
+  <rect x="30" y="30" width="1140" height="615" rx="24" fill="#FFFFFF" stroke="#D9DBE6" stroke-width="1"/>
+  <path d="M54 30H1146A24 24 0 0 1 1170 54V45H30V54A24 24 0 0 1 54 30Z" fill="#F06473"/>
+  <text x="60" y="72" text-anchor="start" fill="#F06473" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" letter-spacing="1.8"><tspan x="60" dy="0">WEBSITE BASICS · 04</tspan></text>
+  <text x="60" y="118" text-anchor="start" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="42" font-weight="800" letter-spacing="-0.8"><tspan x="60" dy="0">Improve one change at a time</tspan></text>
+  <text x="1140" y="72" text-anchor="end" fill="#594477" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="800" letter-spacing="0.7"><tspan x="1140" dy="0">REV 5 · 2026-08-22</tspan></text>
+<rect x="340" y="150" width="520" height="58" rx="29" fill="#FCEBED" stroke="#E7C7CE" stroke-width="2"/><text x="600" y="188" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="0"><tspan x="600" dy="0">Start with a clear request</tspan></text>
+<rect x="120" y="245" width="240" height="220" rx="18" fill="#E6F4F3" stroke="#BCDCD9" stroke-width="2"/><text x="240" y="292" text-anchor="middle" fill="#1F817C" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800" letter-spacing="0"><tspan x="240" dy="0">DRAFT</tspan></text>
+<rect x="180" y="319" width="120" height="82" rx="11" fill="#FFFFFF" stroke="#1F817C" stroke-width="3"/><rect x="193" y="334" width="94" height="12" rx="6" fill="#F06473"/><rect x="193" y="363" width="63" height="8" rx="4" fill="#243678"/><rect x="193" y="385" width="94" height="7" rx="3" fill="#D9DBE6"/>
+<text x="240" y="438" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="0"><tspan x="240" dy="0">Generate a version</tspan></text>
+<path d="M411 341L429 355L411 369" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="480" y="245" width="240" height="220" rx="18" fill="#F0ECF8" stroke="#D8CEE8" stroke-width="2"/><text x="600" y="292" text-anchor="middle" fill="#594477" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800" letter-spacing="0"><tspan x="600" dy="0">REVIEW</tspan></text>
+<path d="M539 350c34-44 88-44 122 0-34 44-88 44-122 0Z" fill="none" stroke="#594477" stroke-width="6"/><circle cx="600" cy="350" r="18" fill="#594477" stroke="none" stroke-width="0"/>
+<text x="600" y="416" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="0"><tspan x="600" dy="0">Check facts, links</tspan><tspan x="600" dy="28">and mobile</tspan></text>
+<path d="M771 341L789 355L771 369" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="840" y="245" width="240" height="220" rx="18" fill="#FCEBED" stroke="#E7C7CE" stroke-width="2"/><text x="960" y="292" text-anchor="middle" fill="#F06473" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="800" letter-spacing="0"><tspan x="960" dy="0">ONE CHANGE</tspan></text>
+<rect x="876" y="319" width="168" height="76" rx="10" fill="#FFFFFF" stroke="#F06473" stroke-width="2"/><text x="960" y="350" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="0"><tspan x="960" dy="0">Shorten the intro</tspan></text><text x="960" y="416" text-anchor="middle" fill="#243678" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="0"><tspan x="960" dy="0">Request one</tspan><tspan x="960" dy="28">specific change</tspan></text>
+<path d="M960 489V530H240V513" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/><path d="M228 513L240 493L252 513Z" fill="#F06473"/>
+</svg>

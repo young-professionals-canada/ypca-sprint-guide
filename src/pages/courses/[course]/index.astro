@@ -1,0 +1,25 @@
+---
+import { getCollection, type CollectionEntry } from "astro:content";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import CourseOverview from "../../../components/CourseOverview.astro";
+
+export async function getStaticPaths() {
+  const courses = await getCollection("courses");
+  const lessons = await getCollection("lessons");
+  return courses.map((course) => ({
+    params: { course: course.data.slug },
+    props: { course, lessons: lessons.filter((lesson) => lesson.data.course === course.data.slug) }
+  }));
+}
+
+interface Props {
+  course: CollectionEntry<"courses">;
+  lessons: CollectionEntry<"lessons">[];
+}
+
+const { course, lessons } = Astro.props;
+---
+
+<BaseLayout title={`${course.data.title} | YPCA Career Academy`} description={course.data.summary} pageClass="course-overview-page">
+  <CourseOverview course={course} lessons={lessons} />
+</BaseLayout>

@@ -1,0 +1,164 @@
+---
+import { render, type CollectionEntry } from "astro:content";
+import { withBase } from "../lib/paths";
+
+interface Props {
+  course: CollectionEntry<"courses">;
+  lesson: CollectionEntry<"lessons">;
+  orderedLessons: CollectionEntry<"lessons">[];
+}
+
+const { course, lesson, orderedLessons } = Astro.props;
+const { Content } = await render(lesson);
+const currentIndex = orderedLessons.findIndex((item) => item.data.slug === lesson.data.slug);
+const previous = orderedLessons[currentIndex - 1];
+const next = orderedLessons[currentIndex + 1];
+const diagramSrc = lesson.data.diagram ? withBase(`assets/technical-diagrams/${lesson.data.diagram}`) : undefined;
+---
+
+<div class="lesson-progress-top" aria-hidden="true"><span data-global-progress></span></div>
+<div class="lesson-shell" data-lesson-shell data-course-slug={course.data.slug} data-lesson-slug={lesson.data.slug} data-total-lessons={orderedLessons.length}>
+  <aside class="course-sidebar" aria-label="Course lessons">
+    <a class="sidebar-course-link" href={withBase(`courses/${course.data.slug}/`)}>← Course overview</a>
+    <p class="sidebar-course-number">Course {course.data.number}</p>
+    <h2>{course.data.shortTitle}</h2>
+    <nav>
+      {course.data.modules.map((module, moduleIndex) => (
+        <div class="sidebar-module">
+          <p>Module {moduleIndex + 1} · {module.title}</p>
+          {module.lessons.map((slug) => {
+            const item = orderedLessons.find((candidate) => candidate.data.slug === slug);
+            if (!item) return null;
+            return (
+              <a class:list={["sidebar-lesson", { active: slug === lesson.data.slug }]} href={withBase(`courses/${course.data.slug}/${slug}/`)} aria-current={slug === lesson.data.slug ? "page" : undefined} data-sidebar-lesson={slug}>
+                <span aria-hidden="true">{String(item.data.number).padStart(2, "0")}</span>{item.data.title}
+              </a>
+            );
+          })}
+        </div>
+      ))}
+    </nav>
+  </aside>
+
+  <article class="lesson-content">
+    <header class="lesson-header">
+      <div class="lesson-breadcrumb"><span>{lesson.data.module}</span><span aria-hidden="true">/</span><span>Lesson {lesson.data.number} of {orderedLessons.length}</span></div>
+      <h1>{lesson.data.title}</h1>
+      <p>{lesson.data.objective}</p>
+      <div class="lesson-meta"><span>About {lesson.data.minutes} minutes</span><span>Self-directed</span><span>Your progress saves here</span></div>
+    </header>
+
+    <div class="lesson-article prose">
+      {diagramSrc && (
+        <figure class="lesson-diagram">
+          <img src={diagramSrc} alt={lesson.data.diagramAlt || ""} />
+          <figcaption>{lesson.data.diagramAlt}</figcaption>
+        </figure>
+      )}
+      <Content />
+    </div>
+
+    {lesson.data.prompt && (
+      <section class="prompt-block" aria-labelledby="prompt-title">
+        <div class="prompt-heading"><div><p class="block-kicker">Reusable prompt</p><h2 id="prompt-title">{lesson.data.prompt.title}</h2></div><button type="button" data-copy-prompt>Copy prompt</button></div>
+        <pre data-prompt-text>{lesson.data.prompt.text}</pre>
+      </section>
+    )}
+
+    <section class="activity-block" aria-labelledby="activity-title">
+      <p class="block-kicker">Do this now</p>
+      <h2 id="activity-title">{lesson.data.activityTitle}</h2>
+      <ol>{lesson.data.activitySteps.map((step) => <li>{step}</li>)}</ol>
+    </section>
+
+    {lesson.data.resources.length > 0 && (
+      <section class="lesson-resources" aria-labelledby="resource-title">
+        <p class="block-kicker">Resources</p>
+        <h2 id="resource-title">Use these files</h2>
+        <div>{lesson.data.resources.map((resource) => <a href={resource.kind === "external" ? resource.href : withBase(resource.href)} target={resource.kind === "external" ? "_blank" : undefined} rel={resource.kind === "external" ? "noopener" : undefined}>{resource.label} <span aria-hidden="true">↗</span></a>)}</div>
+      </section>
+    )}
+
+    <section class="artifact-block" aria-labelledby="artifact-title">
+      <p class="block-kicker">Before you continue</p>
+      <h2 id="artifact-title">Confirm your work</h2>
+      <p>Check each item only when it is true. These checks save in this browser.</p>
+      <div class="artifact-list">
+        {lesson.data.artifacts.map((artifact, index) => (
+          <label><input type="checkbox" data-artifact={`${lesson.data.slug}:${index}`} /><span>{artifact}</span></label>
+        ))}
+      </div>
+    </section>
+
+    <section class="lesson-completion">
+      <div><p class="block-kicker">Lesson {lesson.data.number} of {orderedLessons.length}</p><h2 data-completion-title>Ready for the next step?</h2><p data-completion-copy>Complete the activity and confirm your work above.</p></div>
+      <button class="button primary" type="button" data-complete-lesson>Mark lesson complete</button>
+    </section>
+
+    <nav class="lesson-pagination" aria-label="Lesson navigation">
+      {previous ? <a href={withBase(`courses/${course.data.slug}/${previous.data.slug}/`)}><span>Previous lesson</span><strong>← {previous.data.title}</strong></a> : <a href={withBase(`courses/${course.data.slug}/`)}><span>Course</span><strong>← Overview</strong></a>}
+      {next ? <a class="next" href={withBase(`courses/${course.data.slug}/${next.data.slug}/`)}><span>Next lesson</span><strong>{next.data.title} →</strong></a> : <a class="next" href={withBase(`courses/${course.data.slug}/`)}><span>Course complete</span><strong>Review your progress →</strong></a>}
+    </nav>
+  </article>
+</div>
+<div class="toast" role="status" aria-live="polite" data-toast></div>
+
+<script>
+  import { getCourseRecord, setArtifactComplete, setLessonComplete, summarizeCourse, visitLesson } from "../scripts/progress";
+  const lessonShell = document.querySelector<HTMLElement>("[data-lesson-shell]");
+  const courseSlug = lessonShell?.dataset.courseSlug || "";
+  const lessonSlug = lessonShell?.dataset.lessonSlug || "";
+  const totalLessons = Number(lessonShell?.dataset.totalLessons || 0);
+  const notify = (message: string) => {
+    const toast = document.querySelector("[data-toast]");
+    if (!(toast instanceof HTMLElement)) return;
+    toast.textContent = message;
+    toast.classList.add("show");
+    window.setTimeout(() => toast.classList.remove("show"), 1800);
+  };
+  const renderLesson = () => {
+    const record = getCourseRecord(courseSlug);
+    const complete = record.completedLessons.includes(lessonSlug);
+    const artifactInputs = [...document.querySelectorAll<HTMLInputElement>("[data-artifact]")];
+    const allArtifactsComplete = artifactInputs.length > 0 && artifactInputs.every((input) => Boolean(record.artifacts[input.dataset.artifact || ""]));
+    const summary = summarizeCourse(courseSlug, totalLessons);
+    const bar = document.querySelector("[data-global-progress]");
+    if (bar instanceof HTMLElement) bar.style.width = `${summary.percent}%`;
+    document.querySelectorAll("[data-sidebar-lesson]").forEach((link) => link.classList.toggle("complete", record.completedLessons.includes(link.getAttribute("data-sidebar-lesson") || "")));
+    document.querySelectorAll("[data-artifact]").forEach((input) => {
+      if (input instanceof HTMLInputElement) input.checked = Boolean(record.artifacts[input.dataset.artifact || ""]);
+    });
+    const button = document.querySelector("[data-complete-lesson]");
+    const title = document.querySelector("[data-completion-title]");
+    const copy = document.querySelector("[data-completion-copy]");
+    if (button instanceof HTMLButtonElement) {
+      button.textContent = complete ? "Lesson completed ✓" : allArtifactsComplete ? "Mark lesson complete" : "Complete checklist to finish";
+      button.classList.toggle("completed", complete);
+      button.disabled = !complete && !allArtifactsComplete;
+    }
+    if (title) title.textContent = complete ? "Lesson complete." : "Ready for the next step?";
+    if (copy) copy.textContent = complete ? "Your progress is saved. Continue when you are ready." : "Complete the activity and confirm your work above.";
+  };
+  visitLesson(courseSlug, lessonSlug);
+  document.querySelectorAll("[data-artifact]").forEach((input) => input.addEventListener("change", () => {
+    if (!(input instanceof HTMLInputElement)) return;
+    setArtifactComplete(courseSlug, input.dataset.artifact || "", input.checked);
+    if (!input.checked && getCourseRecord(courseSlug).completedLessons.includes(lessonSlug)) setLessonComplete(courseSlug, lessonSlug, false);
+    renderLesson();
+  }));
+  document.querySelector("[data-complete-lesson]")?.addEventListener("click", () => {
+    const record = getCourseRecord(courseSlug);
+    const complete = !record.completedLessons.includes(lessonSlug);
+    const allArtifactsComplete = [...document.querySelectorAll<HTMLInputElement>("[data-artifact]")].every((input) => input.checked);
+    if (complete && !allArtifactsComplete) { notify("Complete the artifact checklist first"); return; }
+    setLessonComplete(courseSlug, lessonSlug, complete);
+    renderLesson();
+    notify(complete ? "Lesson marked complete" : "Lesson marked incomplete");
+  });
+  document.querySelector("[data-copy-prompt]")?.addEventListener("click", async () => {
+    const prompt = document.querySelector("[data-prompt-text]")?.textContent || "";
+    try { await navigator.clipboard.writeText(prompt); notify("Prompt copied"); }
+    catch { notify("Select the prompt text to copy it"); }
+  });
+  renderLesson();
+</script>

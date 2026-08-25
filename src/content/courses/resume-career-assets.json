@@ -1,0 +1,30 @@
+{
+  "slug": "resume-career-assets",
+  "number": "01",
+  "title": "Resume, Tailoring & Standout Project",
+  "shortTitle": "Resume & Project",
+  "summary": "Create a verified career source of truth, turn it into a strong resume, tailor it honestly, and define a project worth showing.",
+  "level": "Beginner friendly",
+  "guidedMinutes": 85,
+  "buildTime": "2–4 hours of independent work",
+  "accent": "coral",
+  "outcomes": [
+    "A reusable Master Profile",
+    "A polished base and tailored resume",
+    "A focused two-week project brief"
+  ],
+  "prerequisites": [
+    "A laptop or desktop computer",
+    "Notes about your work, education, volunteering, and projects",
+    "One real job posting you would consider applying to"
+  ],
+  "modules": [
+    { "title": "Build your evidence base", "description": "Gather verified facts and create one reliable source of truth.", "lessons": ["prepare-evidence", "master-profile"] },
+    { "title": "Create the resume", "description": "Build a reusable resume, then adapt it for a real opportunity.", "lessons": ["base-resume", "truthful-tailoring"] },
+    { "title": "Create proof", "description": "Define a small project and finish with a practical next-step plan.", "lessons": ["standout-project", "finish-career-assets"] }
+  ],
+  "resources": [
+    { "label": "Master Profile worksheet", "href": "resources/resume-toolkit/master-profile-worksheet.docx", "kind": "download" },
+    { "label": "Resume building instructions", "href": "resources/resume-toolkit/resume-build-instructions.pdf", "kind": "page" }
+  ]
+}

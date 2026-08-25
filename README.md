@@ -1,27 +1,33 @@
-# YPCA Career Academy: Sprint Workshop Guides
+# YPCA Career Academy: Self-Directed Courses
 
-This repository is ready for GitHub Pages. It contains one landing page and two separate, self-contained workshop guides:
+This repository contains the Young Professionals Canada Career Academy course website. It is an Astro static site published through GitHub Pages.
 
-- `index.html` - session landing page
-- `resume-session/index.html` - Resume Building + Tailoring + Project Building
-- `personal-website/index.html` - Personal Website Workshop
-- `assets/ypca-wordmark.png` - official YPCA wordmark used across the site
-- `resources/resume-toolkit/` - editable resume templates, worksheets, prompts, and reference PDFs
+## Current courses
 
-There is no build step, package installation, or server requirement.
+- Resume, Tailoring & Standout Project
+- Build Your Personal Website
+- Build Your LinkedIn Presence
 
-## Publish with GitHub Pages
+Each course contains three modules and six lessons. Lesson content lives in `src/content/lessons/`; course metadata and module order live in `src/content/courses/`.
 
-1. Create or open a GitHub repository.
-2. Keep `index.html`, `.nojekyll`, both session folders, and `resources/` in the repository root.
-3. Commit and push the files to the `main` branch.
-4. Open the repository's **Settings → Pages**.
-5. Under **Build and deployment**, choose **Deploy from a branch**.
-6. Select the `main` branch and `/ (root)`, then save.
-7. Open the GitHub Pages URL after deployment finishes.
+## Local development
 
-The pages can also be opened directly in Chrome, Edge, Firefox, or Safari. For the most accurate local test of relative downloads, serve the repository with a small local HTTP server.
+```sh
+npm install
+npm run dev
+```
 
-## Updating the guide
+## Validation and publishing
 
-Update the landing page or either session page, commit the changes, and push to the same branch. GitHub Pages will publish the updated version.
+```sh
+npm run build
+```
+
+The GitHub Actions workflow builds and publishes the generated static site when changes reach `main`. In the repository Pages settings, use **GitHub Actions** as the publishing source.
+
+## Updating a course
+
+1. Edit the relevant Markdown lesson.
+2. Keep its `course`, `slug`, and `number` stable so saved learner progress remains valid.
+3. Add or update referenced resources in `public/resources/`.
+4. Run `npm run build` before publishing.

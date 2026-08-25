@@ -1,0 +1,27 @@
+{
+  "slug": "personal-website",
+  "number": "02",
+  "title": "Build Your Personal Website",
+  "shortTitle": "Personal Website",
+  "summary": "Use your resume as the source of truth and build a clear, responsive personal website with AI—no coding required.",
+  "level": "Beginner friendly",
+  "guidedMinutes": 90,
+  "buildTime": "2–3 hours of independent work",
+  "accent": "teal",
+  "outcomes": [
+    "A clear content and visual direction",
+    "An evidence-based website prompt",
+    "A reviewed website ready to publish"
+  ],
+  "prerequisites": [
+    "A completed or draft resume",
+    "A laptop or desktop computer",
+    "An account with an AI website builder"
+  ],
+  "modules": [
+    { "title": "Plan the website", "description": "Understand the parts, protect your privacy, and choose a direction.", "lessons": ["website-basics", "website-direction"] },
+    { "title": "Build and improve", "description": "Create a grounded prompt, generate a draft, and revise one change at a time.", "lessons": ["website-prompt", "generate-and-revise"] },
+    { "title": "Review and publish", "description": "Test the experience, publish it, and understand how domains work.", "lessons": ["website-quality", "publish-and-maintain"] }
+  ],
+  "resources": []
+}

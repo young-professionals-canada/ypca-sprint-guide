@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Truthful tailoring uses verified experience as a filter</title>
+  <desc id="desc">Job requirements are compared with verified experience. Supported and related requirements can become accurate resume content. Unsupported requirements remain honest gaps.</desc>
+  <rect width="1200" height="675" fill="#F3F1EE"/><circle cx="1155" cy="20" r="130" fill="#F0ECF8"/><circle cx="5" cy="675" r="95" fill="#FCEBED"/>
+  <rect x="30" y="30" width="1140" height="615" rx="24" fill="#FFFFFF" stroke="#D9DBE6"/><path d="M54 30H1146A24 24 0 0 1 1170 54V45H30V54A24 24 0 0 1 54 30Z" fill="#F06473"/>
+  <text x="60" y="72" fill="#F06473" font-family="Arial,sans-serif" font-size="16" font-weight="800" letter-spacing="1.8">RESUME FOUNDATIONS · 02</text>
+  <text x="60" y="123" fill="#243678" font-family="Arial,sans-serif" font-size="42" font-weight="800">Tailor through evidence—not wishful keywords</text>
+  <rect x="65" y="185" width="280" height="330" rx="18" fill="#F0ECF8" stroke="#D8CEE8" stroke-width="2"/>
+  <text x="205" y="233" text-anchor="middle" fill="#594477" font-family="Arial,sans-serif" font-size="25" font-weight="800">JOB PRIORITIES</text>
+  <g font-family="Arial,sans-serif" font-size="20" font-weight="700" fill="#243678"><text x="100" y="293">Research</text><text x="100" y="348">Excel</text><text x="100" y="403">Client support</text><text x="100" y="458">SQL</text></g>
+  <path d="M365 350h85" stroke="#594477" stroke-width="6"/><path d="m435 330 25 20-25 20" fill="none" stroke="#594477" stroke-width="6"/>
+  <path d="M510 180h180l50 170-50 170H510l50-170Z" fill="#243678"/>
+  <text x="625" y="282" text-anchor="middle" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="27" font-weight="800">VERIFIED</text><text x="625" y="319" text-anchor="middle" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="27" font-weight="800">EXPERIENCE</text>
+  <text x="625" y="374" text-anchor="middle" fill="#E5E8F8" font-family="Arial,sans-serif" font-size="19">Can I prove it?</text><text x="625" y="407" text-anchor="middle" fill="#E5E8F8" font-family="Arial,sans-serif" font-size="19">Can I explain it?</text>
+  <path d="M760 350h75" stroke="#594477" stroke-width="6"/><path d="m820 330 25 20-25 20" fill="none" stroke="#594477" stroke-width="6"/>
+  <rect x="870" y="180" width="265" height="210" rx="18" fill="#E6F4F3" stroke="#BCDCD9" stroke-width="2"/><text x="1002" y="230" text-anchor="middle" fill="#1F817C" font-family="Arial,sans-serif" font-size="24" font-weight="800">TAILORED RESUME</text><text x="1002" y="285" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="21" font-weight="700">Supported keywords</text><text x="1002" y="322" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="21" font-weight="700">Relevant evidence first</text><text x="1002" y="359" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="21" font-weight="700">Accurate wording</text>
+  <rect x="870" y="420" width="265" height="95" rx="18" fill="#FCEBED" stroke="#E7C7CE" stroke-width="2"/><text x="1002" y="460" text-anchor="middle" fill="#F06473" font-family="Arial,sans-serif" font-size="21" font-weight="800">HONEST GAPS</text><text x="1002" y="492" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="18" font-weight="700">Do not claim what is missing</text>
+  <rect x="260" y="555" width="680" height="45" rx="22" fill="#243678"/><text x="600" y="584" text-anchor="middle" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="19" font-weight="700">The posting sets priorities · your evidence sets the truth</text>
+</svg>

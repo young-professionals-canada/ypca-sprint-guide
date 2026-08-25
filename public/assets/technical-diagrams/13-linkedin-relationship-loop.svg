@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675" role="img" aria-labelledby="title desc">
+  <title id="title">Professional relationships grow through a repeatable loop</title>
+  <desc id="desc">Discover relevant people, engage with their work, connect with real context, follow up respectfully, and contribute over time before repeating the cycle.</desc>
+  <rect width="1200" height="675" fill="#F3F1EE"/>
+  <circle cx="1155" cy="20" r="130" fill="#F0ECF8"/><circle cx="5" cy="675" r="95" fill="#FCEBED"/>
+  <rect x="30" y="30" width="1140" height="615" rx="24" fill="#FFFFFF" stroke="#D9DBE6"/>
+  <path d="M54 30H1146A24 24 0 0 1 1170 54V45H30V54A24 24 0 0 1 54 30Z" fill="#594477"/>
+  <text x="60" y="72" fill="#594477" font-family="Arial,sans-serif" font-size="16" font-weight="800" letter-spacing="1.8">LINKEDIN PRESENCE · 02</text>
+  <text x="60" y="122" fill="#243678" font-family="Arial,sans-serif" font-size="42" font-weight="800">Build relationships before making requests</text>
+  <circle cx="600" cy="360" r="112" fill="#243678"/>
+  <text x="600" y="348" text-anchor="middle" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="25" font-weight="800">PROFESSIONAL</text>
+  <text x="600" y="384" text-anchor="middle" fill="#FFFFFF" font-family="Arial,sans-serif" font-size="25" font-weight="800">RELATIONSHIP</text>
+  <rect x="90" y="215" width="220" height="105" rx="18" fill="#F0ECF8" stroke="#D8CEE8" stroke-width="2"/>
+  <text x="200" y="260" text-anchor="middle" fill="#594477" font-family="Arial,sans-serif" font-size="22" font-weight="800">DISCOVER</text><text x="200" y="292" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="17" font-weight="700">Relevant people + context</text>
+  <rect x="90" y="405" width="220" height="105" rx="18" fill="#E6F4F3" stroke="#BCDCD9" stroke-width="2"/>
+  <text x="200" y="450" text-anchor="middle" fill="#1F817C" font-family="Arial,sans-serif" font-size="22" font-weight="800">ENGAGE</text><text x="200" y="482" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="17" font-weight="700">Read + contribute usefully</text>
+  <rect x="890" y="215" width="220" height="105" rx="18" fill="#FCEBED" stroke="#E7C7CE" stroke-width="2"/>
+  <text x="1000" y="260" text-anchor="middle" fill="#F06473" font-family="Arial,sans-serif" font-size="22" font-weight="800">CONNECT</text><text x="1000" y="292" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="17" font-weight="700">Explain the real reason</text>
+  <rect x="890" y="405" width="220" height="105" rx="18" fill="#E8ECF7" stroke="#C9D1E7" stroke-width="2"/>
+  <text x="1000" y="450" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="22" font-weight="800">FOLLOW UP</text><text x="1000" y="482" text-anchor="middle" fill="#243678" font-family="Arial,sans-serif" font-size="17" font-weight="700">Appreciate + continue</text>
+  <path d="M322 266C420 184 472 178 520 232" fill="none" stroke="#594477" stroke-width="6" stroke-linecap="round"/><path d="m502 213 28 26-37 4" fill="none" stroke="#594477" stroke-width="6"/>
+  <path d="M680 232c63-65 121-46 198 34" fill="none" stroke="#F06473" stroke-width="6" stroke-linecap="round"/><path d="m854 260 32 14-10-35" fill="none" stroke="#F06473" stroke-width="6"/>
+  <path d="M878 458c-92 72-152 80-208 31" fill="none" stroke="#243678" stroke-width="6" stroke-linecap="round"/><path d="m689 509-30-28 38-1" fill="none" stroke="#243678" stroke-width="6"/>
+  <path d="M520 489c-61 57-122 52-198-30" fill="none" stroke="#1F817C" stroke-width="6" stroke-linecap="round"/><path d="m346 466-34-15 12 36" fill="none" stroke="#1F817C" stroke-width="6"/>
+  <rect x="345" y="555" width="510" height="48" rx="24" fill="#F0ECF8"/>
+  <text x="600" y="586" text-anchor="middle" fill="#594477" font-family="Arial,sans-serif" font-size="19" font-weight="800">CONTRIBUTE OVER TIME · THEN REPEAT</text>
+</svg>
